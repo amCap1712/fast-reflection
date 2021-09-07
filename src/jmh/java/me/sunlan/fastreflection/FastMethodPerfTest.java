@@ -41,9 +41,6 @@ import java.util.concurrent.TimeUnit;
  *
  */
 
-@Warmup(iterations = 3, time = 1, timeUnit = TimeUnit.SECONDS)
-@Measurement(iterations = 5, time = 1, timeUnit = TimeUnit.SECONDS)
-@Fork(3)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Thread)
@@ -64,20 +61,20 @@ public class FastMethodPerfTest {
     }
 
 
-    @Benchmark
-    public void constructor_direct_StringCtorCharArray() {
-        new String(CHAR_ARRAY);
-    }
-
-    @Benchmark
-    public void constructor_reflect_StringCtorCharArray() throws Throwable {
-        STRING_CONSTRUCTOR_CHAR_ARRAY.newInstance(CHAR_ARRAY_OBJECT);
-    }
-
-    @Benchmark
-    public void constructor_fastreflect_StringCtorCharArray() throws Throwable {
-        FAST_STRING_CONSTRUCTOR_CHAR_ARRAY.invoke(CHAR_ARRAY_OBJECT);
-    }
+//    @Benchmark
+//    public void constructor_direct_StringCtorCharArray() {
+//        new String(CHAR_ARRAY);
+//    }
+//
+//    @Benchmark
+//    public void constructor_reflect_StringCtorCharArray() throws Throwable {
+//        STRING_CONSTRUCTOR_CHAR_ARRAY.newInstance(CHAR_ARRAY_OBJECT);
+//    }
+//
+//    @Benchmark
+//    public void constructor_fastreflect_StringCtorCharArray() throws Throwable {
+//        FAST_STRING_CONSTRUCTOR_CHAR_ARRAY.invoke(CHAR_ARRAY_OBJECT);
+//    }
 
     @Benchmark
     public boolean method_direct_StringStartsWith_Return() {
