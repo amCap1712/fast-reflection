@@ -1,0 +1,1585 @@
+# JMH version: 1.33
+# VM version: JDK 11.0.11, OpenJDK 64-Bit Server VM, 11.0.11+9
+# VM invoker: /home/lucifer/.sdkman/candidates/java/11.0.11.hs-adpt/bin/java
+# VM options: -Xms2g -Xms2g -XX:MetaspaceSize=512m -XX:MaxMetaspaceSize=512m -XX:+UseG1GC
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: me.sunlan.fastreflection.FastMethodPerfTest.method_direct_StringStartsWith
+
+# Run progress: 0.00% complete, ETA 00:10:00
+# Fork: 1 of 1
+# Preparing profilers: LinuxPerfAsmProfiler 
+# Profilers consume stdout and stderr from target VM, use -v EXTRA to copy to console
+# Warmup Iteration   1: 0.796 ns/op
+# Warmup Iteration   2: 1.088 ns/op
+# Warmup Iteration   3: 1.088 ns/op
+# Warmup Iteration   4: 1.091 ns/op
+# Warmup Iteration   5: 0.785 ns/op
+Iteration   1: 0.785 ns/op
+Iteration   2: 0.791 ns/op
+Iteration   3: 0.759 ns/op
+Iteration   4: 0.793 ns/op
+Iteration   5: 0.799 ns/op
+# Processing profiler results: LinuxPerfAsmProfiler 
+
+
+Result "me.sunlan.fastreflection.FastMethodPerfTest.method_direct_StringStartsWith":
+  0.786 ±(99.9%) 0.059 ns/op [Average]
+  (min, avg, max) = (0.759, 0.786, 0.799), stdev = 0.015
+  CI (99.9%): [0.726, 0.845] (assumes normal distribution)
+
+Secondary result "me.sunlan.fastreflection.FastMethodPerfTest.method_direct_StringStartsWith:·asm":
+PrintAssembly processed: 111415 total address lines.
+Perf output processed (skipped 56.754 seconds):
+ Column 1: cycles (49956 events)
+
+Hottest code regions (>10.00% "cycles" events):
+
+....[Hottest Region 1]..............................................................................
+c2, level 4, me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_jmhTest::method_direct_StringStartsWith_avgt_jmhStub, version 541 (22 bytes) 
+
+             0x00007f03f0367369: mov    $0x2,%ebp
+             0x00007f03f036736e: test   %r10d,%r10d
+         ╭   0x00007f03f0367371: jne    0x00007f03f036739b  ;*if_icmpeq {reexecute=0 rethrow=0 return_oop=0}
+         │                                                 ; - java.lang.String::startsWith@87 (line 1438)
+         │                                                 ; - java.lang.String::startsWith@3 (line 1470)
+         │                                                 ; - me.sunlan.fastreflection.FastMethodPerfTest::method_direct_StringStartsWith@4 (line 51)
+         │                                                 ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_jmhTest::method_direct_StringStartsWith_avgt_jmhStub@15 (line 186)
+         │   0x00007f03f0367373: nopw   0x0(%rax,%rax,1)
+         │   0x00007f03f036737c: data16 data16 xchg %ax,%ax  ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+         │                                                 ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_jmhTest::method_direct_StringStartsWith_avgt_jmhStub@31 (line 189)
+  1.91%  │↗  0x00007f03f0367380: movzbl 0x94(%r9),%r10d    ;*getfield isDone {reexecute=0 rethrow=0 return_oop=0}
+         ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_jmhTest::method_direct_StringStartsWith_avgt_jmhStub@25 (line 188)
+  4.04%  ││  0x00007f03f0367388: mov    0x108(%r15),%r11
+ 10.88%  ││  0x00007f03f036738f: add    $0x1,%rbp          ; ImmutableOopMap{r8=Oop r9=Oop rbx=Oop }
+         ││                                                ;*ifeq {reexecute=1 rethrow=0 return_oop=0}
+         ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_jmhTest::method_direct_StringStartsWith_avgt_jmhStub@28 (line 188)
+ 23.09%  ││  0x00007f03f0367393: test   %eax,(%r11)        ;   {poll}
+ 58.52%  ││  0x00007f03f0367396: test   %r10d,%r10d
+         │╰  0x00007f03f0367399: je     0x00007f03f0367380  ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+         │                                                 ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_jmhTest::method_direct_StringStartsWith_avgt_jmhStub@31 (line 189)
+         ↘   0x00007f03f036739b: movabs $0x7f04075daf00,%r10
+             0x00007f03f03673a5: call   *%r10              ;*invokestatic nanoTime {reexecute=0 rethrow=0 return_oop=0}
+                                                           ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_jmhTest::method_direct_StringStartsWith_avgt_jmhStub@32 (line 189)
+             0x00007f03f03673a8: mov    %rax,0x30(%rbx)    ;*putfield stopTime {reexecute=0 rethrow=0 return_oop=0}
+                                                           ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_jmhTest::method_direct_StringStartsWith_avgt_jmhStub@35 (line 189)
+             0x00007f03f03673ac: movq   $0x0,0x20(%rbx)    ;*putfield realTime {reexecute=0 rethrow=0 return_oop=0}
+                                                           ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_jmhTest::method_direct_StringStartsWith_avgt_jmhStub@41 (line 190)
+             0x00007f03f03673b4: vcvtsi2sd %rbp,%xmm0,%xmm0
+....................................................................................................
+ 98.43%  <total for region 1>
+
+....[Hottest Regions]...............................................................................
+ 98.43%         c2, level 4  me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_jmhTest::method_direct_StringStartsWith_avgt_jmhStub, version 541 (22 bytes) 
+  0.29%   [kernel.kallsyms]  [unknown] (6 bytes) 
+  0.13%   [kernel.kallsyms]  [unknown] (13 bytes) 
+  0.03%   [kernel.kallsyms]  [unknown] (3 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (9 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (51 bytes) 
+  0.02%           libjvm.so  ElfSymbolTable::lookup (47 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (20 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (51 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (5 bytes) 
+  0.01%           libjvm.so  defaultStream::write (107 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (17 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (19 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (32 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (24 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (72 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (14 bytes) 
+  0.86%  <...other 307 warm regions...>
+....................................................................................................
+100.00%  <totals>
+
+....[Hottest Methods (after inlining)]..............................................................
+ 98.43%         c2, level 4  me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_jmhTest::method_direct_StringStartsWith_avgt_jmhStub, version 541 
+  1.29%   [kernel.kallsyms]  [unknown] 
+  0.02%           libjvm.so  ElfSymbolTable::lookup 
+  0.02%           libjvm.so  defaultStream::write 
+  0.01%        libc-2.27.so  __vsprintf_chk 
+  0.01%      hsdis-amd64.so  print_insn 
+  0.01%           libjvm.so  fileStream::write 
+  0.01%           libjvm.so  outputStream::update_position 
+  0.01%           libjvm.so  RelocIterator::initialize 
+  0.01%           libjvm.so  xmlStream::write_text 
+  0.01%        libc-2.27.so  realloc 
+  0.01%        libc-2.27.so  vfprintf 
+  0.01%           libjvm.so  Thread::muxAcquire 
+  0.01%           libjvm.so  os::PlatformEvent::park 
+  0.01%        libc-2.27.so  _IO_default_xsputn 
+  0.01%           libjvm.so  ValueStack::ValueStack 
+  0.01%        libc-2.27.so  syscall 
+  0.01%        libc-2.27.so  _IO_fwrite 
+  0.00%           libjvm.so  os::javaTimeNanos 
+  0.00%           libjvm.so  Method::line_number_from_bci 
+  0.12%  <...other 48 warm methods...>
+....................................................................................................
+100.00%  <totals>
+
+....[Distribution by Source]........................................................................
+ 98.43%         c2, level 4
+  1.29%   [kernel.kallsyms]
+  0.17%           libjvm.so
+  0.06%        libc-2.27.so
+  0.02%      hsdis-amd64.so
+  0.01%  libpthread-2.27.so
+  0.01%         interpreter
+  0.00%          ld-2.27.so
+  0.00%      perf-32368.map
+  0.00%    Unknown, level 0
+....................................................................................................
+100.00%  <totals>
+
+
+
+# JMH version: 1.33
+# VM version: JDK 11.0.11, OpenJDK 64-Bit Server VM, 11.0.11+9
+# VM invoker: /home/lucifer/.sdkman/candidates/java/11.0.11.hs-adpt/bin/java
+# VM options: -Xms2g -Xms2g -XX:MetaspaceSize=512m -XX:MaxMetaspaceSize=512m -XX:+UseG1GC
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: me.sunlan.fastreflection.FastMethodPerfTest.method_direct_StringStartsWith_Return
+
+# Run progress: 16.67% complete, ETA 00:09:08
+# Fork: 1 of 1
+# Preparing profilers: LinuxPerfAsmProfiler 
+# Profilers consume stdout and stderr from target VM, use -v EXTRA to copy to console
+# Warmup Iteration   1: 5.564 ns/op
+# Warmup Iteration   2: 4.608 ns/op
+# Warmup Iteration   3: 5.244 ns/op
+# Warmup Iteration   4: 5.119 ns/op
+# Warmup Iteration   5: 4.667 ns/op
+Iteration   1: 4.584 ns/op
+Iteration   2: 4.633 ns/op
+Iteration   3: 4.651 ns/op
+Iteration   4: 4.777 ns/op
+Iteration   5: 4.682 ns/op
+# Processing profiler results: LinuxPerfAsmProfiler 
+
+
+Result "me.sunlan.fastreflection.FastMethodPerfTest.method_direct_StringStartsWith_Return":
+  4.665 ±(99.9%) 0.276 ns/op [Average]
+  (min, avg, max) = (4.584, 4.665, 4.777), stdev = 0.072
+  CI (99.9%): [4.389, 4.942] (assumes normal distribution)
+
+Secondary result "me.sunlan.fastreflection.FastMethodPerfTest.method_direct_StringStartsWith_Return:·asm":
+PrintAssembly processed: 105553 total address lines.
+Perf output processed (skipped 56.435 seconds):
+ Column 1: cycles (49943 events)
+
+Hottest code regions (>10.00% "cycles" events):
+
+....[Hottest Region 1]..............................................................................
+c2, level 4, org.openjdk.jmh.infra.Blackhole::consumeFull, version 501 (54 bytes) 
+
+            # parm0:    rdx       = boolean
+            #           [sp+0x30]  (sp of caller)
+            0x00007f230c35f9a0: mov    0x8(%rsi),%r10d
+            0x00007f230c35f9a4: movabs $0x800000000,%r12
+            0x00007f230c35f9ae: add    %r12,%r10
+            0x00007f230c35f9b1: xor    %r12,%r12
+            0x00007f230c35f9b4: cmp    %r10,%rax
+            0x00007f230c35f9b7: jne    0x00007f230489ce80  ;   {runtime_call ic_miss_stub}
+            0x00007f230c35f9bd: data16 xchg %ax,%ax
+          [Verified Entry Point]
+  5.70%     0x00007f230c35f9c0: mov    %eax,-0x14000(%rsp)
+  7.05%     0x00007f230c35f9c7: push   %rbp
+  2.02%     0x00007f230c35f9c8: sub    $0x20,%rsp         ;*synchronization entry
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@-1 (line 450)
+  3.40%     0x00007f230c35f9cc: movzbl 0xd1(%rsi),%r11d   ;*getfield bool1 {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@1 (line 450)
+  2.40%     0x00007f230c35f9d4: xor    %edx,%r11d         ;*ixor {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@12 (line 452)
+  1.87%     0x00007f230c35f9d7: movzbl 0xd3(%rsi),%r8d
+  3.35%     0x00007f230c35f9df: xor    %edx,%r8d          ;*ixor {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@15 (line 452)
+  1.09%     0x00007f230c35f9e2: cmp    %r8d,%r11d
+         ╭  0x00007f230c35f9e5: je     0x00007f230c35f9f7  ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+         │                                                ; - org.openjdk.jmh.infra.Blackhole::consumeFull@16 (line 452)
+  3.00%  │  0x00007f230c35f9e7: add    $0x20,%rsp
+  0.80%  │  0x00007f230c35f9eb: pop    %rbp
+  4.04%  │  0x00007f230c35f9ec: mov    0x108(%r15),%r10
+  0.93%  │  0x00007f230c35f9f3: test   %eax,(%r10)        ;   {poll_return}
+ 14.05%  │  0x00007f230c35f9f6: ret    
+         ↘  0x00007f230c35f9f7: mov    %rsi,%rbp
+            0x00007f230c35f9fa: mov    %edx,(%rsp)
+            0x00007f230c35f9fd: mov    %r11d,0x4(%rsp)
+            0x00007f230c35fa02: mov    %r8d,0x8(%rsp)
+            0x00007f230c35fa07: mov    $0xffffff4d,%esi
+            0x00007f230c35fa0c: data16 xchg %ax,%ax
+            0x00007f230c35fa0f: call   0x00007f230489d880  ; ImmutableOopMap{rbp=Oop }
+                                                          ;*if_icmpne {reexecute=1 rethrow=0 return_oop=0}
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@16 (line 452)
+                                                          ;   {runtime_call UncommonTrapBlob}
+....................................................................................................
+ 49.69%  <total for region 1>
+
+....[Hottest Region 2]..............................................................................
+c2, level 4, me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_Return_jmhTest::method_direct_StringStartsWith_Return_avgt_jmhStub, version 545 (48 bytes) 
+
+                                                          ;   {optimized virtual_call}
+            0x00007f230c365a98: mov    %rbp,%r9
+            0x00007f230c365a9b: movzbl 0x94(%r9),%r11d    ;*getfield isDone {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_Return_jmhTest::method_direct_StringStartsWith_Return_avgt_jmhStub@30 (line 188)
+                                                          ; implicit exception: dispatches to 0x00007f230c365b5c
+            0x00007f230c365aa3: test   %r11d,%r11d
+            0x00007f230c365aa6: jne    0x00007f230c365b1c  ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_Return_jmhTest::method_direct_StringStartsWith_Return_avgt_jmhStub@33 (line 188)
+            0x00007f230c365aac: mov    $0x1,%ebp          ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_Return_jmhTest::method_direct_StringStartsWith_Return_avgt_jmhStub@36 (line 189)
+  1.61%  ↗  0x00007f230c365ab1: mov    %r9,(%rsp)
+  3.99%  │  0x00007f230c365ab5: mov    0x38(%rsp),%rsi
+  0.67%  │  0x00007f230c365aba: mov    $0x1,%edx
+  0.58%  │  0x00007f230c365abf: call   0x00007f230489d100  ; ImmutableOopMap{[48]=Oop [56]=Oop [64]=Oop [0]=Oop }
+         │                                                ;*invokespecial consumeFull {reexecute=0 rethrow=0 return_oop=0}
+         │                                                ; - org.openjdk.jmh.infra.Blackhole::consume@15 (line 343)
+         │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_Return_jmhTest::method_direct_StringStartsWith_Return_avgt_jmhStub@20 (line 186)
+         │                                                ;   {optimized virtual_call}
+ 31.04%  │  0x00007f230c365ac4: mov    (%rsp),%r9
+  0.95%  │  0x00007f230c365ac8: movzbl 0x94(%r9),%r8d     ;*if_icmpeq {reexecute=0 rethrow=0 return_oop=0}
+         │                                                ; - java.lang.String::startsWith@87 (line 1438)
+         │                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_direct_StringStartsWith_Return@4 (line 82)
+         │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_Return_jmhTest::method_direct_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  4.12%  │  0x00007f230c365ad0: mov    0x108(%r15),%r10
+  4.06%  │  0x00007f230c365ad7: add    $0x1,%rbp          ; ImmutableOopMap{r9=Oop [48]=Oop [56]=Oop [64]=Oop }
+         │                                                ;*ifeq {reexecute=1 rethrow=0 return_oop=0}
+         │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_Return_jmhTest::method_direct_StringStartsWith_Return_avgt_jmhStub@33 (line 188)
+  0.52%  │  0x00007f230c365adb: test   %eax,(%r10)        ;   {poll}
+  1.49%  │  0x00007f230c365ade: test   %r8d,%r8d
+  0.00%  ╰  0x00007f230c365ae1: je     0x00007f230c365ab1  ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_Return_jmhTest::method_direct_StringStartsWith_Return_avgt_jmhStub@36 (line 189)
+            0x00007f230c365ae3: movabs $0x7f232287bf00,%r10
+            0x00007f230c365aed: call   *%r10              ;*invokestatic nanoTime {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_Return_jmhTest::method_direct_StringStartsWith_Return_avgt_jmhStub@37 (line 189)
+            0x00007f230c365af0: mov    0x30(%rsp),%r10
+            0x00007f230c365af5: mov    %rax,0x30(%r10)    ;*putfield stopTime {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_Return_jmhTest::method_direct_StringStartsWith_Return_avgt_jmhStub@40 (line 189)
+            0x00007f230c365af9: movq   $0x0,0x20(%r10)    ;*putfield realTime {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_Return_jmhTest::method_direct_StringStartsWith_Return_avgt_jmhStub@46 (line 190)
+            0x00007f230c365b01: vcvtsi2sd %rbp,%xmm0,%xmm0
+....................................................................................................
+ 49.03%  <total for region 2>
+
+....[Hottest Regions]...............................................................................
+ 49.69%         c2, level 4  org.openjdk.jmh.infra.Blackhole::consumeFull, version 501 (54 bytes) 
+ 49.03%         c2, level 4  me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_Return_jmhTest::method_direct_StringStartsWith_Return_avgt_jmhStub, version 545 (48 bytes) 
+  0.28%   [kernel.kallsyms]  [unknown] (5 bytes) 
+  0.07%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.03%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.02%           libjvm.so  ElfSymbolTable::lookup (44 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (1 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (39 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (30 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (99 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (59 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (4 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (12 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (39 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (30 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (20 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (36 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (18 bytes) 
+  0.67%  <...other 260 warm regions...>
+....................................................................................................
+100.00%  <totals>
+
+....[Hottest Methods (after inlining)]..............................................................
+ 49.69%         c2, level 4  org.openjdk.jmh.infra.Blackhole::consumeFull, version 501 
+ 49.03%         c2, level 4  me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_direct_StringStartsWith_Return_jmhTest::method_direct_StringStartsWith_Return_avgt_jmhStub, version 545 
+  1.04%   [kernel.kallsyms]  [unknown] 
+  0.02%           libjvm.so  ElfSymbolTable::lookup 
+  0.01%           libjvm.so  fileStream::write 
+  0.01%      hsdis-amd64.so  print_insn 
+  0.01%           libjvm.so  RelocIterator::initialize 
+  0.01%           libjvm.so  os::PlatformEvent::park 
+  0.01%        libc-2.27.so  cfree 
+  0.01%  libpthread-2.27.so  pthread_cond_timedwait@@GLIBC_2.3.2 
+  0.01%           libjvm.so  defaultStream::write 
+  0.01%        libc-2.27.so  _dl_addr 
+  0.01%        libc-2.27.so  vfprintf 
+  0.01%           libjvm.so  SpinPause 
+  0.00%           libjvm.so  Thread::muxAcquire 
+  0.00%           libjvm.so  StatSamplerTask::task 
+  0.00%        libc-2.27.so  vsnprintf 
+  0.00%           libjvm.so  d_print_comp_inner 
+  0.00%           libjvm.so  outputStream::do_vsnprintf_and_write_with_automatic_buffer 
+  0.00%           libjvm.so  resource_allocate_bytes 
+  0.10%  <...other 46 warm methods...>
+....................................................................................................
+100.00%  <totals>
+
+....[Distribution by Source]........................................................................
+ 98.72%         c2, level 4
+  1.04%   [kernel.kallsyms]
+  0.15%           libjvm.so
+  0.04%        libc-2.27.so
+  0.01%      hsdis-amd64.so
+  0.01%         interpreter
+  0.01%  libpthread-2.27.so
+  0.00%         c1, level 3
+  0.00%        perf-406.map
+....................................................................................................
+100.00%  <totals>
+
+
+
+# JMH version: 1.33
+# VM version: JDK 11.0.11, OpenJDK 64-Bit Server VM, 11.0.11+9
+# VM invoker: /home/lucifer/.sdkman/candidates/java/11.0.11.hs-adpt/bin/java
+# VM options: -Xms2g -Xms2g -XX:MetaspaceSize=512m -XX:MaxMetaspaceSize=512m -XX:+UseG1GC
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: me.sunlan.fastreflection.FastMethodPerfTest.method_fastreflect_StringStartsWith
+
+# Run progress: 33.33% complete, ETA 00:07:16
+# Fork: 1 of 1
+# Preparing profilers: LinuxPerfAsmProfiler 
+# Profilers consume stdout and stderr from target VM, use -v EXTRA to copy to console
+# Warmup Iteration   1: 0.797 ns/op
+# Warmup Iteration   2: 1.088 ns/op
+# Warmup Iteration   3: 0.770 ns/op
+# Warmup Iteration   4: 0.778 ns/op
+# Warmup Iteration   5: 0.750 ns/op
+Iteration   1: 0.778 ns/op
+Iteration   2: 0.768 ns/op
+Iteration   3: 0.765 ns/op
+Iteration   4: 0.793 ns/op
+Iteration   5: 0.780 ns/op
+# Processing profiler results: LinuxPerfAsmProfiler 
+
+
+Result "me.sunlan.fastreflection.FastMethodPerfTest.method_fastreflect_StringStartsWith":
+  0.777 ±(99.9%) 0.044 ns/op [Average]
+  (min, avg, max) = (0.765, 0.777, 0.793), stdev = 0.011
+  CI (99.9%): [0.733, 0.821] (assumes normal distribution)
+
+Secondary result "me.sunlan.fastreflection.FastMethodPerfTest.method_fastreflect_StringStartsWith:·asm":
+PrintAssembly processed: 123324 total address lines.
+Perf output processed (skipped 57.842 seconds):
+ Column 1: cycles (49890 events)
+
+Hottest code regions (>10.00% "cycles" events):
+
+....[Hottest Region 1]..............................................................................
+c2, level 4, me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_jmhTest::method_fastreflect_StringStartsWith_avgt_jmhStub, version 641 (25 bytes) 
+
+                                                          ; - java.lang.String::startsWith@87 (line 1438)
+                                                          ; - java.lang.String::startsWith@3 (line 1470)
+                                                          ; - java.lang.invoke.LambdaForm$DMH/0x00000008000d2040::invokeSpecial@17
+                                                          ; - java.lang.invoke.Invokers$Holder::invokeExact_MT@20
+                                                          ; - me.sunlan.fastreflection.FastMethod_bd288f565cccd5e64249db9c492b34b6::invoke@14
+                                                          ; - me.sunlan.fastreflection.FastMethodPerfTest::method_fastreflect_StringStartsWith@14 (line 61)
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_jmhTest::method_fastreflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+            0x00007f832436c473: nopw   0x0(%rax,%rax,1)
+            0x00007f832436c47c: data16 data16 xchg %ax,%ax  ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_jmhTest::method_fastreflect_StringStartsWith_avgt_jmhStub@31 (line 189)
+  2.00%  ↗  0x00007f832436c480: movzbl 0x94(%r9),%r10d    ;*getfield isDone {reexecute=0 rethrow=0 return_oop=0}
+         │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_jmhTest::method_fastreflect_StringStartsWith_avgt_jmhStub@25 (line 188)
+  3.93%  │  0x00007f832436c488: mov    0x108(%r15),%r11
+ 11.00%  │  0x00007f832436c48f: add    $0x1,%rbp          ; ImmutableOopMap{r8=Oop r9=Oop rbx=Oop }
+         │                                                ;*ifeq {reexecute=1 rethrow=0 return_oop=0}
+         │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_jmhTest::method_fastreflect_StringStartsWith_avgt_jmhStub@28 (line 188)
+ 23.06%  │  0x00007f832436c493: test   %eax,(%r11)        ;   {poll}
+ 58.94%  │  0x00007f832436c496: test   %r10d,%r10d
+  0.00%  ╰  0x00007f832436c499: je     0x00007f832436c480  ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_jmhTest::method_fastreflect_StringStartsWith_avgt_jmhStub@31 (line 189)
+            0x00007f832436c49b: movabs $0x7f833c038f00,%r10
+            0x00007f832436c4a5: call   *%r10              ;*invokestatic nanoTime {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_jmhTest::method_fastreflect_StringStartsWith_avgt_jmhStub@32 (line 189)
+            0x00007f832436c4a8: mov    %rax,0x30(%rbx)    ;*putfield stopTime {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_jmhTest::method_fastreflect_StringStartsWith_avgt_jmhStub@35 (line 189)
+            0x00007f832436c4ac: movq   $0x0,0x20(%rbx)    ;*putfield realTime {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_jmhTest::method_fastreflect_StringStartsWith_avgt_jmhStub@41 (line 190)
+            0x00007f832436c4b4: vcvtsi2sd %rbp,%xmm0,%xmm0
+            0x00007f832436c4b9: vmovsd %xmm0,0x18(%rbx)
+....................................................................................................
+ 98.94%  <total for region 1>
+
+....[Hottest Regions]...............................................................................
+ 98.94%         c2, level 4  me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_jmhTest::method_fastreflect_StringStartsWith_avgt_jmhStub, version 641 (25 bytes) 
+  0.10%   [kernel.kallsyms]  [unknown] (3 bytes) 
+  0.03%   [kernel.kallsyms]  [unknown] (37 bytes) 
+  0.03%   [kernel.kallsyms]  [unknown] (5 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (6 bytes) 
+  0.02%           libjvm.so  ElfSymbolTable::lookup (47 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (45 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (30 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (27 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (9 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (67 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (63 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (16 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (1 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (36 bytes) 
+  0.01%  libpthread-2.27.so  __pthread_disable_asynccancel (18 bytes) 
+  0.69%  <...other 266 warm regions...>
+....................................................................................................
+100.00%  <totals>
+
+....[Hottest Methods (after inlining)]..............................................................
+ 98.94%         c2, level 4  me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_jmhTest::method_fastreflect_StringStartsWith_avgt_jmhStub, version 641 
+  0.81%   [kernel.kallsyms]  [unknown] 
+  0.02%           libjvm.so  ElfSymbolTable::lookup 
+  0.01%        libc-2.27.so  vfprintf 
+  0.01%         interpreter  method entry point (kind = zerolocals)  
+  0.01%        libc-2.27.so  _IO_default_xsputn 
+  0.01%        libc-2.27.so  syscall 
+  0.01%           libjvm.so  fileStream::write 
+  0.01%  libpthread-2.27.so  __pthread_disable_asynccancel 
+  0.01%           libjvm.so  xmlStream::write_text 
+  0.01%        libc-2.27.so  vsnprintf 
+  0.01%           libjvm.so  defaultStream::write 
+  0.01%        libc-2.27.so  _IO_fwrite 
+  0.00%  libpthread-2.27.so  __libc_write 
+  0.00%           libjvm.so  printf_to_env 
+  0.00%           libjvm.so  outputStream::do_vsnprintf_and_write_with_automatic_buffer 
+  0.00%      hsdis-amd64.so  print_insn 
+  0.00%        libc-2.27.so  write 
+  0.00%  libpthread-2.27.so  pthread_cond_timedwait@@GLIBC_2.3.2 
+  0.00%        libc-2.27.so  _IO_setb 
+  0.11%  <...other 55 warm methods...>
+....................................................................................................
+100.00%  <totals>
+
+....[Distribution by Source]........................................................................
+ 98.94%         c2, level 4
+  0.81%   [kernel.kallsyms]
+  0.13%           libjvm.so
+  0.06%        libc-2.27.so
+  0.02%  libpthread-2.27.so
+  0.02%         interpreter
+  0.01%      hsdis-amd64.so
+  0.00%                    
+  0.00%         c1, level 3
+  0.00%          ld-2.27.so
+  0.00%      libz.so.1.2.11
+....................................................................................................
+100.00%  <totals>
+
+
+
+# JMH version: 1.33
+# VM version: JDK 11.0.11, OpenJDK 64-Bit Server VM, 11.0.11+9
+# VM invoker: /home/lucifer/.sdkman/candidates/java/11.0.11.hs-adpt/bin/java
+# VM options: -Xms2g -Xms2g -XX:MetaspaceSize=512m -XX:MaxMetaspaceSize=512m -XX:+UseG1GC
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: me.sunlan.fastreflection.FastMethodPerfTest.method_fastreflect_StringStartsWith_Return
+
+# Run progress: 50.00% complete, ETA 00:05:27
+# Fork: 1 of 1
+# Preparing profilers: LinuxPerfAsmProfiler 
+# Profilers consume stdout and stderr from target VM, use -v EXTRA to copy to console
+# Warmup Iteration   1: 6.195 ns/op
+# Warmup Iteration   2: 4.655 ns/op
+# Warmup Iteration   3: 6.196 ns/op
+# Warmup Iteration   4: 4.656 ns/op
+# Warmup Iteration   5: 4.495 ns/op
+Iteration   1: 4.523 ns/op
+Iteration   2: 4.750 ns/op
+Iteration   3: 4.568 ns/op
+Iteration   4: 4.560 ns/op
+Iteration   5: 4.577 ns/op
+# Processing profiler results: LinuxPerfAsmProfiler 
+
+
+Result "me.sunlan.fastreflection.FastMethodPerfTest.method_fastreflect_StringStartsWith_Return":
+  4.595 ±(99.9%) 0.342 ns/op [Average]
+  (min, avg, max) = (4.523, 4.595, 4.750), stdev = 0.089
+  CI (99.9%): [4.254, 4.937] (assumes normal distribution)
+
+Secondary result "me.sunlan.fastreflection.FastMethodPerfTest.method_fastreflect_StringStartsWith_Return:·asm":
+PrintAssembly processed: 114936 total address lines.
+Perf output processed (skipped 56.857 seconds):
+ Column 1: cycles (49939 events)
+
+Hottest code regions (>10.00% "cycles" events):
+
+....[Hottest Region 1]..............................................................................
+c2, level 4, org.openjdk.jmh.infra.Blackhole::consumeFull, version 536 (75 bytes) 
+
+            # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+            #           [sp+0x40]  (sp of caller)
+            0x00007ffa94363e40: mov    0x8(%rsi),%r10d
+            0x00007ffa94363e44: movabs $0x800000000,%r12
+            0x00007ffa94363e4e: add    %r12,%r10
+            0x00007ffa94363e51: xor    %r12,%r12
+            0x00007ffa94363e54: cmp    %r10,%rax
+            0x00007ffa94363e57: jne    0x00007ffa8c89ce80  ;   {runtime_call ic_miss_stub}
+            0x00007ffa94363e5d: data16 xchg %ax,%ax
+          [Verified Entry Point]
+  4.76%     0x00007ffa94363e60: mov    %eax,-0x14000(%rsp)
+  5.32%     0x00007ffa94363e67: push   %rbp
+  2.02%     0x00007ffa94363e68: sub    $0x30,%rsp         ;*synchronization entry
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@-1 (line 513)
+  3.23%     0x00007ffa94363e6c: mov    %rdx,(%rsp)
+  4.81%     0x00007ffa94363e70: mov    %rsi,0x8(%rsp)
+  5.07%     0x00007ffa94363e75: mov    0xc4(%rsi),%ebp    ;*getfield tlrMask {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@1 (line 513)
+  3.13%     0x00007ffa94363e7b: imul   $0x19660d,0xc0(%rsi),%r11d
+  4.59%     0x00007ffa94363e86: add    $0x3c6ef35f,%r11d  ;*iadd {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@15 (line 514)
+  2.96%     0x00007ffa94363e8d: mov    %r11d,0xc0(%rsi)   ;*putfield tlr {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@17 (line 514)
+  7.99%     0x00007ffa94363e94: and    %ebp,%r11d
+  1.37%     0x00007ffa94363e97: test   %r11d,%r11d
+  0.00%  ╭  0x00007ffa94363e9a: je     0x00007ffa94363eac  ;*return {reexecute=0 rethrow=0 return_oop=0}
+         │                                                ; - org.openjdk.jmh.infra.Blackhole::consumeFull@48 (line 520)
+  0.83%  │  0x00007ffa94363e9c: add    $0x30,%rsp
+  0.38%  │  0x00007ffa94363ea0: pop    %rbp
+  4.32%  │  0x00007ffa94363ea1: mov    0x108(%r15),%r10
+  1.56%  │  0x00007ffa94363ea8: test   %eax,(%r10)        ;   {poll_return}
+ 10.72%  │  0x00007ffa94363eab: ret    
+         ↘  0x00007ffa94363eac: mov    0x118(%r15),%rbx
+            0x00007ffa94363eb3: mov    %rbx,%r10
+            0x00007ffa94363eb6: add    $0x20,%r10
+            0x00007ffa94363eba: cmp    0x128(%r15),%r10
+            0x00007ffa94363ec1: jae    0x00007ffa9436411e  ;*putfield referent {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - java.lang.ref.Reference::&lt;init&gt;@6 (line 399)
+                                                          ; - java.lang.ref.Reference::&lt;init&gt;@3 (line 395)
+                                                          ; - java.lang.ref.WeakReference::&lt;init&gt;@2 (line 57)
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@33 (line 517)
+            0x00007ffa94363ec7: mov    %r10,0x118(%r15)
+....................................................................................................
+ 63.07%  <total for region 1>
+
+....[Hottest Region 2]..............................................................................
+c2, level 4, me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_Return_jmhTest::method_fastreflect_StringStartsWith_Return_avgt_jmhStub, version 573 (53 bytes) 
+
+            0x00007ffa94369da0: mov    %rbp,%r8
+            0x00007ffa94369da3: movzbl 0x94(%r8),%r11d    ;*getfield isDone {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_Return_jmhTest::method_fastreflect_StringStartsWith_Return_avgt_jmhStub@30 (line 188)
+                                                          ; implicit exception: dispatches to 0x00007ffa94369e70
+            0x00007ffa94369dab: test   %r11d,%r11d
+            0x00007ffa94369dae: jne    0x00007ffa94369e30  ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_Return_jmhTest::method_fastreflect_StringStartsWith_Return_avgt_jmhStub@33 (line 188)
+            0x00007ffa94369db4: mov    $0x1,%ebp
+            0x00007ffa94369db9: nopl   0x0(%rax)          ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_Return_jmhTest::method_fastreflect_StringStartsWith_Return_avgt_jmhStub@36 (line 189)
+  1.72%  ↗  0x00007ffa94369dc0: mov    %r8,(%rsp)
+  3.34%  │  0x00007ffa94369dc4: mov    0x38(%rsp),%rsi
+  1.13%  │  0x00007ffa94369dc9: movabs $0x492c20a90,%rdx  ;   {oop(a &apos;java/lang/Boolean&apos;{0x0000000492c20a90} = true)}
+  1.06%  │  0x00007ffa94369dd3: call   0x00007ffa8c89d100  ; ImmutableOopMap{[48]=Oop [56]=Oop [64]=Oop [0]=Oop }
+         │                                                ;*invokespecial consumeFull {reexecute=0 rethrow=0 return_oop=0}
+         │                                                ; - org.openjdk.jmh.infra.Blackhole::consume@15 (line 317)
+         │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_Return_jmhTest::method_fastreflect_StringStartsWith_Return_avgt_jmhStub@20 (line 186)
+         │                                                ;   {optimized virtual_call}
+ 17.13%  │  0x00007ffa94369dd8: mov    (%rsp),%r8
+  1.42%  │  0x00007ffa94369ddc: movzbl 0x94(%r8),%r11d    ;*if_icmpeq {reexecute=0 rethrow=0 return_oop=0}
+         │                                                ; - java.lang.String::startsWith@87 (line 1438)
+         │                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │                                                ; - java.lang.invoke.LambdaForm$DMH/0x00000008000d2040::invokeSpecial@17
+         │                                                ; - java.lang.invoke.Invokers$Holder::invokeExact_MT@20
+         │                                                ; - me.sunlan.fastreflection.FastMethod_bd288f565cccd5e64249db9c492b34b6::invoke@14
+         │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_fastreflect_StringStartsWith_Return@14 (line 92)
+         │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_Return_jmhTest::method_fastreflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  3.95%  │  0x00007ffa94369de4: mov    0x108(%r15),%r10
+  3.41%  │  0x00007ffa94369deb: add    $0x1,%rbp          ; ImmutableOopMap{r8=Oop [48]=Oop [56]=Oop [64]=Oop }
+         │                                                ;*ifeq {reexecute=1 rethrow=0 return_oop=0}
+         │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_Return_jmhTest::method_fastreflect_StringStartsWith_Return_avgt_jmhStub@33 (line 188)
+  0.73%  │  0x00007ffa94369def: test   %eax,(%r10)        ;   {poll}
+  2.03%  │  0x00007ffa94369df2: test   %r11d,%r11d
+  0.00%  ╰  0x00007ffa94369df5: je     0x00007ffa94369dc0  ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_Return_jmhTest::method_fastreflect_StringStartsWith_Return_avgt_jmhStub@36 (line 189)
+            0x00007ffa94369df7: movabs $0x7ffaac6e1f00,%r10
+            0x00007ffa94369e01: call   *%r10              ;*invokestatic nanoTime {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_Return_jmhTest::method_fastreflect_StringStartsWith_Return_avgt_jmhStub@37 (line 189)
+            0x00007ffa94369e04: mov    0x30(%rsp),%r10
+            0x00007ffa94369e09: mov    %rax,0x30(%r10)    ;*putfield stopTime {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_Return_jmhTest::method_fastreflect_StringStartsWith_Return_avgt_jmhStub@40 (line 189)
+            0x00007ffa94369e0d: movq   $0x0,0x20(%r10)    ;*putfield realTime {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_Return_jmhTest::method_fastreflect_StringStartsWith_Return_avgt_jmhStub@46 (line 190)
+            0x00007ffa94369e15: vcvtsi2sd %rbp,%xmm0,%xmm0
+....................................................................................................
+ 35.93%  <total for region 2>
+
+....[Hottest Regions]...............................................................................
+ 63.07%         c2, level 4  org.openjdk.jmh.infra.Blackhole::consumeFull, version 536 (75 bytes) 
+ 35.93%         c2, level 4  me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_Return_jmhTest::method_fastreflect_StringStartsWith_Return_avgt_jmhStub, version 573 (53 bytes) 
+  0.10%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.07%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.03%           libjvm.so  ElfSymbolTable::lookup (54 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (45 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (41 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (24 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (40 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (19 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (8 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (9 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.01%   [kernel.kallsyms]  [unknown] (17 bytes) 
+  0.61%  <...other 230 warm regions...>
+....................................................................................................
+100.00%  <totals>
+
+....[Hottest Methods (after inlining)]..............................................................
+ 63.07%         c2, level 4  org.openjdk.jmh.infra.Blackhole::consumeFull, version 536 
+ 35.93%         c2, level 4  me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_fastreflect_StringStartsWith_Return_jmhTest::method_fastreflect_StringStartsWith_Return_avgt_jmhStub, version 573 
+  0.82%   [kernel.kallsyms]  [unknown] 
+  0.03%           libjvm.so  ElfSymbolTable::lookup 
+  0.02%        libc-2.27.so  vfprintf 
+  0.01%        libc-2.27.so  _IO_setb 
+  0.01%           libjvm.so  outputStream::do_vsnprintf_and_write_with_automatic_buffer 
+  0.01%       perf-1162.map  [unknown] 
+  0.01%           libjvm.so  fileStream::write 
+  0.01%           libjvm.so  defaultStream::write 
+  0.00%          ld-2.27.so  __tls_get_addr 
+  0.00%      hsdis-amd64.so  print_insn 
+  0.00%           libjvm.so  nmethod::print_code_comment_on 
+  0.00%        libc-2.27.so  _IO_fwrite 
+  0.00%         interpreter  invoke return entry points  
+  0.00%         interpreter  getstatic  178 getstatic  
+  0.00%  libpthread-2.27.so  __libc_write 
+  0.00%        libc-2.27.so  [unknown] 
+  0.00%      hsdis-amd64.so  OP_IMREG 
+  0.00%        libc-2.27.so  vsnprintf 
+  0.07%  <...other 33 warm methods...>
+....................................................................................................
+100.00%  <totals>
+
+....[Distribution by Source]........................................................................
+ 99.00%         c2, level 4
+  0.82%   [kernel.kallsyms]
+  0.10%           libjvm.so
+  0.04%        libc-2.27.so
+  0.01%         interpreter
+  0.01%  libpthread-2.27.so
+  0.01%      hsdis-amd64.so
+  0.01%       perf-1162.map
+  0.00%          ld-2.27.so
+....................................................................................................
+100.00%  <totals>
+
+
+
+# JMH version: 1.33
+# VM version: JDK 11.0.11, OpenJDK 64-Bit Server VM, 11.0.11+9
+# VM invoker: /home/lucifer/.sdkman/candidates/java/11.0.11.hs-adpt/bin/java
+# VM options: -Xms2g -Xms2g -XX:MetaspaceSize=512m -XX:MaxMetaspaceSize=512m -XX:+UseG1GC
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: me.sunlan.fastreflection.FastMethodPerfTest.method_reflect_StringStartsWith
+
+# Run progress: 66.67% complete, ETA 00:03:38
+# Fork: 1 of 1
+# Preparing profilers: LinuxPerfAsmProfiler 
+# Profilers consume stdout and stderr from target VM, use -v EXTRA to copy to console
+# Warmup Iteration   1: 4.934 ns/op
+# Warmup Iteration   2: 4.403 ns/op
+# Warmup Iteration   3: 17.626 ns/op
+# Warmup Iteration   4: 14.027 ns/op
+# Warmup Iteration   5: 13.336 ns/op
+Iteration   1: 14.100 ns/op
+Iteration   2: 13.257 ns/op
+Iteration   3: 13.615 ns/op
+Iteration   4: 13.361 ns/op
+Iteration   5: 13.482 ns/op
+# Processing profiler results: LinuxPerfAsmProfiler 
+
+
+Result "me.sunlan.fastreflection.FastMethodPerfTest.method_reflect_StringStartsWith":
+  13.563 ±(99.9%) 1.266 ns/op [Average]
+  (min, avg, max) = (13.257, 13.563, 14.100), stdev = 0.329
+  CI (99.9%): [12.297, 14.829] (assumes normal distribution)
+
+Secondary result "me.sunlan.fastreflection.FastMethodPerfTest.method_reflect_StringStartsWith:·asm":
+PrintAssembly processed: 106754 total address lines.
+Perf output processed (skipped 55.805 seconds):
+ Column 1: cycles (49852 events)
+
+Hottest code regions (>10.00% "cycles" events):
+
+....[Hottest Region 1]..............................................................................
+c2, level 4, me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub, version 515 (496 bytes) 
+
+                                                               ; - java.lang.reflect.Method::invoke@59 (line 566)
+                                                               ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+                                                               ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+                                                               ;   {virtual_call}
+                 0x00007f05dc36bad0: mov    %rbp,%r10
+                 0x00007f05dc36bad3: mov    0x40(%rsp),%rbx    ;*synchronization entry
+                                                               ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@-1 (line 43)
+                                                               ; - java.lang.reflect.Method::invoke@59 (line 566)
+                                                               ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+                                                               ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.79%    ↗ ↗   0x00007f05dc36bad8: movzbl 0x94(%r10),%r8d    ;*if_icmpeq {reexecute=0 rethrow=0 return_oop=0}
+           │ │                                                 ; - java.lang.String::startsWith@87 (line 1438)
+           │ │                                                 ; - java.lang.String::startsWith@3 (line 1470)
+           │ │                                                 ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+           │ │                                                 ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           │ │                                                 ; - java.lang.reflect.Method::invoke@59 (line 566)
+           │ │                                                 ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+           │ │                                                 ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  2.20%    │ │   0x00007f05dc36bae0: mov    0x108(%r15),%r11
+  0.20%    │ │   0x00007f05dc36bae7: add    $0x1,%rbx          ; ImmutableOopMap{r10=Oop [72]=Oop [80]=Oop }
+           │ │                                                 ;*ifeq {reexecute=1 rethrow=0 return_oop=0}
+           │ │                                                 ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@28 (line 188)
+  0.26%    │ │   0x00007f05dc36baeb: test   %eax,(%r11)        ;   {poll}
+  5.18%    │ │   0x00007f05dc36baee: test   %r8d,%r8d
+           │ │   0x00007f05dc36baf1: jne    0x00007f05dc36bcdd
+  0.55%    │ │   0x00007f05dc36baf7: mov    0x118(%r15),%r8
+  0.11%    │ │   0x00007f05dc36bafe: mov    %r8,%r11
+  0.14%    │ │   0x00007f05dc36bb01: add    $0x18,%r11
+  1.70%    │ │   0x00007f05dc36bb05: cmp    0x128(%r15),%r11
+         ╭ │ │   0x00007f05dc36bb0c: jae    0x00007f05dc36bca9  ;*if_icmpeq {reexecute=0 rethrow=0 return_oop=0}
+         │ │ │                                                 ; - java.lang.String::startsWith@87 (line 1438)
+         │ │ │                                                 ; - java.lang.String::startsWith@3 (line 1470)
+         │ │ │                                                 ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │ │ │                                                 ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │ │ │                                                 ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │ │ │                                                 ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │ │ │                                                 ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  1.20%  │ │ │   0x00007f05dc36bb12: mov    %r11,0x118(%r15)
+  0.50%  │ │ │   0x00007f05dc36bb19: prefetchw 0xc0(%r11)
+  1.96%  │ │ │   0x00007f05dc36bb21: movq   $0x1,(%r8)
+  2.66%  │ │ │   0x00007f05dc36bb28: prefetchw 0x100(%r11)
+  0.62%  │ │ │   0x00007f05dc36bb30: movl   $0x13f08,0x8(%r8)  ;   {metadata(&apos;java/lang/Object&apos;[])}
+  1.78%  │ │ │   0x00007f05dc36bb38: prefetchw 0x140(%r11)
+  0.37%  │ │ │   0x00007f05dc36bb40: movl   $0x1,0xc(%r8)
+  3.51%  │ │ │   0x00007f05dc36bb48: prefetchw 0x180(%r11)
+  0.92%  │ │ │   0x00007f05dc36bb50: movl   $0x0,0x14(%r8)
+  1.87%  │ │ │↗  0x00007f05dc36bb58: movl   $0x92524ab8,0x10(%r8)  ;*anewarray {reexecute=0 rethrow=0 return_oop=0}
+         │ │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@6 (line 56)
+         │ │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+         │ │ ││                                                ;   {oop(&quot;a&quot;{0x00000004929255c0})}
+  2.02%  │ │ ││  0x00007f05dc36bb60: movabs $0x491c264e8,%r11  ;   {oop(a &apos;java/lang/reflect/Method&apos;{0x0000000491c264e8})}
+  0.65%  │ │ ││  0x00007f05dc36bb6a: movzbl 0xc(%r11),%r11d
+  0.97%  │ │ ││  0x00007f05dc36bb6f: test   %r11d,%r11d
+         │╭│ ││  0x00007f05dc36bb72: jne    0x00007f05dc36bbd2  ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+         │││ ││                                                ; - java.lang.reflect.Method::invoke@4 (line 556)
+         │││ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │││ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.95%  │││ ││  0x00007f05dc36bb74: movabs $0x491c264e8,%r11  ;   {oop(a &apos;java/lang/reflect/Method&apos;{0x0000000491c264e8})}
+  0.66%  │││ ││  0x00007f05dc36bb7e: mov    0x28(%r11),%r11d   ;*getfield clazz {reexecute=0 rethrow=0 return_oop=0}
+         │││ ││                                                ; - java.lang.reflect.Method::invoke@14 (line 558)
+         │││ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │││ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  1.00%  │││ ││  0x00007f05dc36bb82: movabs $0x491c264e8,%r9   ;   {oop(a &apos;java/lang/reflect/Method&apos;{0x0000000491c264e8})}
+  0.36%  │││ ││  0x00007f05dc36bb8c: mov    0x24(%r9),%r9d     ;*getfield modifiers {reexecute=0 rethrow=0 return_oop=0}
+         │││ ││                                                ; - java.lang.reflect.Method::invoke@18 (line 559)
+         │││ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │││ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  2.71%  │││ ││  0x00007f05dc36bb90: mov    %r9d,%ecx
+  0.44%  │││ ││  0x00007f05dc36bb93: and    $0x8,%ecx          ;*iand {reexecute=0 rethrow=0 return_oop=0}
+         │││ ││                                                ; - java.lang.reflect.Modifier::isStatic@3 (line 105)
+         │││ ││                                                ; - java.lang.reflect.Method::invoke@21 (line 559)
+         │││ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │││ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  1.32%  │││ ││  0x00007f05dc36bb96: test   %ecx,%ecx
+         │││ ││  0x00007f05dc36bb98: jne    0x00007f05dc36be08  ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+         │││ ││                                                ; - java.lang.reflect.Method::invoke@24 (line 559)
+         │││ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │││ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  1.93%  │││ ││  0x00007f05dc36bb9e: cmp    $0x92565a21,%r11d  ;   {oop(a &apos;java/lang/Class&apos;{0x0000000492b2d108} = &apos;me/sunlan/fastreflection/FastMethodPerfTest&apos;)}
+         │││ ││  0x00007f05dc36bba5: je     0x00007f05dc36be30  ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+         │││ ││                                                ; - java.lang.reflect.AccessibleObject::verifyAccess@2 (line 603)
+         │││ ││                                                ; - java.lang.reflect.AccessibleObject::checkAccess@6 (line 590)
+         │││ ││                                                ; - java.lang.reflect.Method::invoke@39 (line 558)
+         │││ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │││ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.27%  │││ ││  0x00007f05dc36bbab: movabs $0x491c264e8,%rcx  ;   {oop(a &apos;java/lang/reflect/Method&apos;{0x0000000491c264e8})}
+  0.42%  │││ ││  0x00007f05dc36bbb5: mov    0x10(%rcx),%edi    ;*getfield securityCheckCache {reexecute=0 rethrow=0 return_oop=0}
+         │││ ││                                                ; - java.lang.reflect.AccessibleObject::verifyAccess@8 (line 606)
+         │││ ││                                                ; - java.lang.reflect.AccessibleObject::checkAccess@6 (line 590)
+         │││ ││                                                ; - java.lang.reflect.Method::invoke@39 (line 558)
+         │││ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │││ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  1.62%  │││ ││  0x00007f05dc36bbb8: mov    %r9d,%edx
+  0.79%  │││ ││  0x00007f05dc36bbbb: and    $0x4,%edx          ;*iand {reexecute=0 rethrow=0 return_oop=0}
+         │││ ││                                                ; - java.lang.reflect.Modifier::isProtected@2 (line 93)
+         │││ ││                                                ; - java.lang.reflect.AccessibleObject::verifyAccess@19 (line 608)
+         │││ ││                                                ; - java.lang.reflect.AccessibleObject::checkAccess@6 (line 590)
+         │││ ││                                                ; - java.lang.reflect.Method::invoke@39 (line 558)
+         │││ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │││ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.23%  │││ ││  0x00007f05dc36bbbe: test   %edx,%edx
+  0.15%  │││ ││  0x00007f05dc36bbc0: jne    0x00007f05dc36be6c  ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+         │││ ││                                                ; - java.lang.reflect.Modifier::isProtected@3 (line 93)
+         │││ ││                                                ; - java.lang.reflect.AccessibleObject::verifyAccess@19 (line 608)
+         │││ ││                                                ; - java.lang.reflect.AccessibleObject::checkAccess@6 (line 590)
+         │││ ││                                                ; - java.lang.reflect.Method::invoke@39 (line 558)
+         │││ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │││ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  1.00%  │││ ││  0x00007f05dc36bbc6: cmp    $0x92565a21,%edi   ;   {oop(a &apos;java/lang/Class&apos;{0x0000000492b2d108} = &apos;me/sunlan/fastreflection/FastMethodPerfTest&apos;)}
+         │││ ││  0x00007f05dc36bbcc: jne    0x00007f05dc36bd9c  ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+         │││ ││                                                ; - java.lang.reflect.Method::invoke@4 (line 556)
+         │││ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │││ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  1.23%  │↘│ ││  0x00007f05dc36bbd2: movabs $0x491c264e8,%r11  ;   {oop(a &apos;java/lang/reflect/Method&apos;{0x0000000491c264e8})}
+  0.56%  │ │ ││  0x00007f05dc36bbdc: mov    0x50(%r11),%r11d   ;*getfield methodAccessor {reexecute=0 rethrow=0 return_oop=0}
+         │ │ ││                                                ; - java.lang.reflect.Method::invoke@43 (line 562)
+         │ │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │ │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  2.46%  │ │ ││  0x00007f05dc36bbe0: mov    0x8(%r12,%r11,8),%r9d  ; implicit exception: dispatches to 0x00007f05dc36c09c
+  7.88%  │ │ ││  0x00007f05dc36bbe5: cmp    $0x9d310,%r9d      ;   {metadata(&apos;jdk/internal/reflect/DelegatingMethodAccessorImpl&apos;)}
+  0.00%  │ │ ││  0x00007f05dc36bbec: jne    0x00007f05dc36bd3c
+  2.22%  │ │ ││  0x00007f05dc36bbf2: shl    $0x3,%r11          ;*invokeinterface invoke {reexecute=0 rethrow=0 return_oop=0}
+         │ │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │ │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │ │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.07%  │ │ ││  0x00007f05dc36bbf6: mov    0xc(%r11),%r9d     ;*getfield delegate {reexecute=0 rethrow=0 return_oop=0}
+         │ │ ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@1 (line 43)
+         │ │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │ │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │ │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.66%  │ │ ││  0x00007f05dc36bbfa: mov    0x8(%r12,%r9,8),%r11d  ; implicit exception: dispatches to 0x00007f05dc36c03c
+ 10.87%  │ │ ││  0x00007f05dc36bbff: cmp    $0xd2040,%r11d     ;   {metadata(&apos;jdk/internal/reflect/GeneratedMethodAccessor1&apos;)}
+  0.00%  │ │ ││  0x00007f05dc36bc06: jne    0x00007f05dc36baa7  ;*invokevirtual invoke {reexecute=0 rethrow=0 return_oop=0}
+         │ │ ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │ │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │ │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │ │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  2.34%  │ │ ││  0x00007f05dc36bc0c: mov    0x10(%r8),%r8d     ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+         │ │ ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@36
+         │ │ ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │ │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │ │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │ │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.03%  │ │ ││  0x00007f05dc36bc10: mov    0x8(%r12,%r8,8),%r11d  ; implicit exception: dispatches to 0x00007f05dc36c04c
+  0.17%  │ │ ││  0x00007f05dc36bc15: cmp    $0x1808,%r11d      ;   {metadata(&apos;java/lang/String&apos;)}
+         │ │ ││  0x00007f05dc36bc1c: jne    0x00007f05dc36c010
+  0.25%  │ │ ││  0x00007f05dc36bc22: shl    $0x3,%r8           ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+         │ │ ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@37
+         │ │ ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │ │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │ │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │ │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  1.96%  │ │ ││  0x00007f05dc36bc26: mov    0xc(%r8),%r11d     ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+         │ │ ││                                                ; - java.lang.String::length@1 (line 658)
+         │ │ ││                                                ; - java.lang.String::startsWith@10 (line 1428)
+         │ │ ││                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │ │ ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │ │ ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │ │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │ │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │ │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.47%  │ │ ││  0x00007f05dc36bc2a: mov    0xc(%r12,%r11,8),%r9d  ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+         │ │ ││                                                ; - java.lang.String::length@4 (line 658)
+         │ │ ││                                                ; - java.lang.String::startsWith@10 (line 1428)
+         │ │ ││                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │ │ ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │ │ ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │ │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │ │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │ │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+         │ │ ││                                                ; implicit exception: dispatches to 0x00007f05dc36c074
+  3.16%  │ │ ││  0x00007f05dc36bc2f: movsbl 0x14(%r8),%ecx     ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+         │ │ ││                                                ; - java.lang.String::coder@7 (line 3258)
+         │ │ ││                                                ; - java.lang.String::length@6 (line 658)
+         │ │ ││                                                ; - java.lang.String::startsWith@10 (line 1428)
+         │ │ ││                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │ │ ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │ │ ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │ │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │ │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │ │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.06%  │ │ ││  0x00007f05dc36bc34: mov    %r9d,%r8d
+  1.15%  │ │ ││  0x00007f05dc36bc37: sar    %cl,%r8d
+  4.05%  │ │ ││  0x00007f05dc36bc3a: mov    $0x3,%edi
+  0.68%  │ │ ││  0x00007f05dc36bc3f: sub    %r8d,%edi
+  0.01%  │ │ ││  0x00007f05dc36bc42: test   %edi,%edi
+  0.00%  │ │ ││  0x00007f05dc36bc44: jl     0x00007f05dc36bd16  ;*if_icmple {reexecute=0 rethrow=0 return_oop=0}
+         │ │ ││                                                ; - java.lang.String::startsWith@14 (line 1428)
+         │ │ ││                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │ │ ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │ │ ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │ │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │ │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │ │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.46%  │ │ ││  0x00007f05dc36bc4a: test   %ecx,%ecx
+  0.00%  │ │ ││  0x00007f05dc36bc4c: jne    0x00007f05dc36bdd4  ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+         │ │ ││                                                ; - java.lang.String::startsWith@46 (line 1435)
+         │ │ ││                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │ │ ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │ │ ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │ │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │ │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │ │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  1.42%  │ │ ││  0x00007f05dc36bc52: test   %r9d,%r9d
+         │ ╰ ││  0x00007f05dc36bc55: jbe    0x00007f05dc36bad8  ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+         │   ││                                                ; - java.lang.String::startsWith@69 (line 1437)
+         │   ││                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │   ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │   ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │   ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │   ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │   ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.84%  │   ││  0x00007f05dc36bc5b: mov    %r9d,%ecx
+  0.03%  │   ││  0x00007f05dc36bc5e: dec    %ecx
+  0.36%  │   ││  0x00007f05dc36bc60: cmp    $0x3,%ecx
+         │   ││  0x00007f05dc36bc63: jae    0x00007f05dc36bd6c
+  1.32%  │   ││  0x00007f05dc36bc69: cmp    %r9d,%ecx
+         │   ││  0x00007f05dc36bc6c: jae    0x00007f05dc36bd6c
+  0.89%  │   ││  0x00007f05dc36bc72: lea    (%r12,%r11,8),%r8
+  0.05%  │   ││  0x00007f05dc36bc76: xor    %r11d,%r11d
+  0.26%  │   ││  0x00007f05dc36bc79: nopl   0x0(%rax)          ;*aload_3 {reexecute=0 rethrow=0 return_oop=0}
+         │   ││                                                ; - java.lang.String::startsWith@72 (line 1438)
+         │   ││                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │   ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │   ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │   ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │   ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │   ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  1.50%  │  ↗││  0x00007f05dc36bc80: movslq %r11d,%rcx         ;*baload {reexecute=0 rethrow=0 return_oop=0}
+         │  │││                                                ; - java.lang.String::startsWith@86 (line 1438)
+         │  │││                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │  │││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │  │││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │  │││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │  │││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │  │││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.96%  │  │││  0x00007f05dc36bc83: movabs $0x491d1ac20,%rdi  ;   {oop([B{0x0000000491d1ac20})}
+  0.08%  │  │││  0x00007f05dc36bc8d: movsbl 0x10(%rdi,%rcx,1),%edi  ;*baload {reexecute=0 rethrow=0 return_oop=0}
+         │  │││                                                ; - java.lang.String::startsWith@78 (line 1438)
+         │  │││                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │  │││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │  │││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │  │││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │  │││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │  │││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  1.89%  │  │││  0x00007f05dc36bc92: movsbl 0x10(%r8,%rcx,1),%edx  ;*baload {reexecute=0 rethrow=0 return_oop=0}
+         │  │││                                                ; - java.lang.String::startsWith@86 (line 1438)
+         │  │││                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │  │││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │  │││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │  │││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │  │││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │  │││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.90%  │  │││  0x00007f05dc36bc98: cmp    %edx,%edi
+         │  │││  0x00007f05dc36bc9a: jne    0x00007f05dc36bd16  ;*if_icmpeq {reexecute=0 rethrow=0 return_oop=0}
+         │  │││                                                ; - java.lang.String::startsWith@87 (line 1438)
+         │  │││                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │  │││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │  │││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │  │││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │  │││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │  │││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  1.47%  │  │││  0x00007f05dc36bc9c: inc    %r11d              ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+         │  │││                                                ; - java.lang.String::startsWith@83 (line 1438)
+         │  │││                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │  │││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │  │││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │  │││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │  │││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │  │││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.04%  │  │││  0x00007f05dc36bc9f: cmp    %r9d,%r11d
+         │  ╰││  0x00007f05dc36bca2: jl     0x00007f05dc36bc80  ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+         │   ││                                                ; - java.lang.String::startsWith@69 (line 1437)
+         │   ││                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │   ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │   ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │   ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │   ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@14 (line 56)
+         │   ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+  0.40%  │   ╰│  0x00007f05dc36bca4: jmp    0x00007f05dc36bad8
+         ↘    │  0x00007f05dc36bca9: mov    %rbx,0x40(%rsp)
+  0.01%       │  0x00007f05dc36bcae: mov    %r10,%rbp
+              │  0x00007f05dc36bcb1: movabs $0x800013f08,%rsi  ;   {metadata(&apos;java/lang/Object&apos;[])}
+              │  0x00007f05dc36bcbb: mov    $0x1,%edx
+              │  0x00007f05dc36bcc0: data16 xchg %ax,%ax
+              │  0x00007f05dc36bcc3: call   0x00007f05d4967980  ; ImmutableOopMap{rbp=Oop [72]=Oop [80]=Oop }
+              │                                                ;*anewarray {reexecute=0 rethrow=0 return_oop=1}
+              │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith@6 (line 56)
+              │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@15 (line 186)
+              │                                                ;   {runtime_call _new_array_Java}
+  0.01%       │  0x00007f05dc36bcc8: mov    %rbp,%r10
+              │  0x00007f05dc36bccb: mov    0x40(%rsp),%rbx
+              │  0x00007f05dc36bcd0: mov    %rax,%r8
+              ╰  0x00007f05dc36bcd3: jmp    0x00007f05dc36bb58
+                 0x00007f05dc36bcd8: mov    $0x1,%ebx          ;*aload_1 {reexecute=0 rethrow=0 return_oop=0}
+                                                               ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub@31 (line 189)
+                 0x00007f05dc36bcdd: movabs $0x7f05f240cf00,%r10
+....................................................................................................
+ 97.20%  <total for region 1>
+
+....[Hottest Regions]...............................................................................
+ 97.20%         c2, level 4  me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub, version 515 (496 bytes) 
+  0.71%           libjvm.so  SpinPause (9 bytes) 
+  0.12%   [kernel.kallsyms]  [unknown] (1 bytes) 
+  0.07%        libc-2.27.so  _dl_addr (2 bytes) 
+  0.06%   [kernel.kallsyms]  [unknown] (6 bytes) 
+  0.05%           libjvm.so  ParallelTaskTerminator::offer_termination (9 bytes) 
+  0.04%           libjvm.so  ElfSymbolTable::lookup (54 bytes) 
+  0.03%           libjvm.so  OptoRuntime::new_array_C (97 bytes) 
+  0.03%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.03%           libjvm.so  SharedRuntime::on_slowpath_allocation_exit (35 bytes) 
+  0.03%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.03%          ld-2.27.so  __tls_get_addr (24 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (49 bytes) 
+  0.02%           libjvm.so  InstanceKlass::allocate_objArray (39 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (19 bytes) 
+  0.02%           libjvm.so  Klass::klass_holder (0 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (45 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (9 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (51 bytes) 
+  0.02%           libjvm.so  G1Allocator::unsafe_max_tlab_alloc (18 bytes) 
+  1.46%  <...other 409 warm regions...>
+....................................................................................................
+100.00%  <totals>
+
+....[Hottest Methods (after inlining)]..............................................................
+ 97.20%         c2, level 4  me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_jmhTest::method_reflect_StringStartsWith_avgt_jmhStub, version 515 
+  0.93%   [kernel.kallsyms]  [unknown] 
+  0.71%           libjvm.so  SpinPause 
+  0.10%        libc-2.27.so  _dl_addr 
+  0.05%           libjvm.so  ParallelTaskTerminator::offer_termination 
+  0.05%           libjvm.so  OptoRuntime::new_array_C 
+  0.04%           libjvm.so  ElfSymbolTable::lookup 
+  0.03%           libjvm.so  InstanceKlass::allocate_objArray 
+  0.03%           libjvm.so  ObjArrayAllocator::initialize 
+  0.03%           libjvm.so  SharedRuntime::on_slowpath_allocation_exit 
+  0.03%          ld-2.27.so  __tls_get_addr 
+  0.02%           libjvm.so  G1CollectionSet::add_eden_region 
+  0.02%           libjvm.so  G1Allocator::unsafe_max_tlab_alloc 
+  0.02%           libjvm.so  Klass::klass_holder 
+  0.02%           libjvm.so  G1AllocRegion::fill_up_remaining_space 
+  0.02%           libjvm.so  MemAllocator::allocate 
+  0.02%           libjvm.so  G1CollectedHeap::attempt_allocation_slow 
+  0.02%           libjvm.so  OtherRegionsTable::occupied 
+  0.02%           libjvm.so  ObjArrayKlass::array_klass_impl 
+  0.02%           libjvm.so  Klass::class_loader 
+  0.63%  <...other 149 warm methods...>
+....................................................................................................
+100.00%  <totals>
+
+....[Distribution by Source]........................................................................
+ 97.21%         c2, level 4
+  1.61%           libjvm.so
+  0.93%   [kernel.kallsyms]
+  0.16%        libc-2.27.so
+  0.03%          ld-2.27.so
+  0.02%      hsdis-amd64.so
+  0.02%  libpthread-2.27.so
+  0.01%         interpreter
+  0.01%        runtime stub
+  0.01%              [vdso]
+  0.00%       perf-1577.map
+  0.00%       libdl-2.27.so
+....................................................................................................
+100.00%  <totals>
+
+
+
+# JMH version: 1.33
+# VM version: JDK 11.0.11, OpenJDK 64-Bit Server VM, 11.0.11+9
+# VM invoker: /home/lucifer/.sdkman/candidates/java/11.0.11.hs-adpt/bin/java
+# VM options: -Xms2g -Xms2g -XX:MetaspaceSize=512m -XX:MaxMetaspaceSize=512m -XX:+UseG1GC
+# Blackhole mode: full + dont-inline hint (default, use -Djmh.blackhole.autoDetect=true to auto-detect)
+# Warmup: 5 iterations, 10 s each
+# Measurement: 5 iterations, 10 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: me.sunlan.fastreflection.FastMethodPerfTest.method_reflect_StringStartsWith_Return
+
+# Run progress: 83.33% complete, ETA 00:01:48
+# Fork: 1 of 1
+# Preparing profilers: LinuxPerfAsmProfiler 
+# Profilers consume stdout and stderr from target VM, use -v EXTRA to copy to console
+# Warmup Iteration   1: 10.589 ns/op
+# Warmup Iteration   2: 9.019 ns/op
+# Warmup Iteration   3: 22.585 ns/op
+# Warmup Iteration   4: 17.877 ns/op
+# Warmup Iteration   5: 17.949 ns/op
+Iteration   1: 17.487 ns/op
+Iteration   2: 17.788 ns/op
+Iteration   3: 17.617 ns/op
+Iteration   4: 17.599 ns/op
+Iteration   5: 18.075 ns/op
+# Processing profiler results: LinuxPerfAsmProfiler 
+
+
+Result "me.sunlan.fastreflection.FastMethodPerfTest.method_reflect_StringStartsWith_Return":
+  17.713 ±(99.9%) 0.883 ns/op [Average]
+  (min, avg, max) = (17.487, 17.713, 18.075), stdev = 0.229
+  CI (99.9%): [16.830, 18.596] (assumes normal distribution)
+
+Secondary result "me.sunlan.fastreflection.FastMethodPerfTest.method_reflect_StringStartsWith_Return:·asm":
+PrintAssembly processed: 115098 total address lines.
+Perf output processed (skipped 56.474 seconds):
+ Column 1: cycles (49718 events)
+
+Hottest code regions (>10.00% "cycles" events):
+
+....[Hottest Region 1]..............................................................................
+c2, level 4, me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub, version 562 (507 bytes) 
+
+                                                               ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@33 (line 188)
+                 0x00007f67fb708c76: mov    $0x1,%ebx
+         ╭       0x00007f67fb708c7b: jmp    0x00007f67fb708cc3  ;*goto {reexecute=0 rethrow=0 return_oop=0}
+         │                                                     ; - java.lang.String::startsWith@92 (line 1442)
+         │                                                     ; - java.lang.String::startsWith@3 (line 1470)
+         │                                                     ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │                                                     ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │                                                     ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │                                                     ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+         │                                                     ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.62%  │  ↗ ↗  0x00007f67fb708c7d: movabs $0x492c20a90,%rdx  ;*synchronization entry
+         │  │ │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@-1 (line 43)
+         │  │ │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │  │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+         │  │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+         │  │ │                                                ;   {oop(a &apos;java/lang/Boolean&apos;{0x0000000492c20a90} = true)}
+  1.22%  │  │ │  0x00007f67fb708c87: mov    %rbx,0x50(%rsp)
+  1.86%  │  │ │  0x00007f67fb708c8c: mov    %r10,%rbp
+  0.15%  │  │ │  0x00007f67fb708c8f: mov    0x10(%rsp),%rsi
+  0.79%  │  │ │  0x00007f67fb708c94: data16 xchg %ax,%ax
+  0.45%  │  │ │  0x00007f67fb708c97: call   0x00007f67f3c35100  ; ImmutableOopMap{rbp=Oop [88]=Oop [96]=Oop [16]=Oop }
+         │  │ │                                                ;*invokespecial consumeFull {reexecute=0 rethrow=0 return_oop=0}
+         │  │ │                                                ; - org.openjdk.jmh.infra.Blackhole::consume@15 (line 317)
+         │  │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@20 (line 186)
+         │  │ │                                                ;   {optimized virtual_call}
+  6.78%  │  │ │  0x00007f67fb708c9c: mov    %rbp,%r10
+  0.15%  │  │ │  0x00007f67fb708c9f: movzbl 0x94(%r10),%r11d   ;*if_icmpeq {reexecute=0 rethrow=0 return_oop=0}
+         │  │ │                                                ; - java.lang.String::startsWith@87 (line 1438)
+         │  │ │                                                ; - java.lang.String::startsWith@3 (line 1470)
+         │  │ │                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+         │  │ │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+         │  │ │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+         │  │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+         │  │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.26%  │  │ │  0x00007f67fb708ca7: mov    0x108(%r15),%r8
+  0.17%  │  │ │  0x00007f67fb708cae: mov    0x50(%rsp),%rbx
+  1.57%  │  │ │  0x00007f67fb708cb3: add    $0x1,%rbx          ; ImmutableOopMap{r10=Oop [88]=Oop [96]=Oop [16]=Oop }
+         │  │ │                                                ;*ifeq {reexecute=1 rethrow=0 return_oop=0}
+         │  │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@33 (line 188)
+  0.17%  │  │ │  0x00007f67fb708cb7: test   %eax,(%r8)         ;   {poll}
+  0.70%  │  │ │  0x00007f67fb708cba: test   %r11d,%r11d
+  0.00%  │  │ │  0x00007f67fb708cbd: jne    0x00007f67fb708efd
+  1.12%  ↘  │ │  0x00007f67fb708cc3: mov    0x118(%r15),%r8
+  0.19%     │ │  0x00007f67fb708cca: mov    %r8,%r11
+  0.08%     │ │  0x00007f67fb708ccd: add    $0x18,%r11
+  0.42%     │ │  0x00007f67fb708cd1: cmp    0x128(%r15),%r11
+  0.00%     │ │  0x00007f67fb708cd8: jae    0x00007f67fb708ec1  ;*if_icmpeq {reexecute=0 rethrow=0 return_oop=0}
+            │ │                                                ; - java.lang.String::startsWith@87 (line 1438)
+            │ │                                                ; - java.lang.String::startsWith@3 (line 1470)
+            │ │                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+            │ │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+            │ │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+            │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+            │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  1.59%     │ │  0x00007f67fb708cde: mov    %r11,0x118(%r15)
+  0.40%     │ │  0x00007f67fb708ce5: prefetchw 0xc0(%r11)
+  1.81%     │ │  0x00007f67fb708ced: movq   $0x1,(%r8)
+  1.34%     │ │  0x00007f67fb708cf4: prefetchw 0x100(%r11)
+  0.88%     │ │  0x00007f67fb708cfc: movl   $0x13f08,0x8(%r8)  ;   {metadata(&apos;java/lang/Object&apos;[])}
+  1.27%     │ │  0x00007f67fb708d04: prefetchw 0x140(%r11)
+  0.98%     │ │  0x00007f67fb708d0c: movl   $0x1,0xc(%r8)
+  1.19%     │ │  0x00007f67fb708d14: prefetchw 0x180(%r11)
+  1.07%     │ │  0x00007f67fb708d1c: movl   $0x0,0x14(%r8)
+  1.04%     │ │  0x00007f67fb708d24: movl   $0x92524aab,0x10(%r8)  ;*anewarray {reexecute=0 rethrow=0 return_oop=0}
+            │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@6 (line 87)
+            │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+            │ │                                                ;   {oop(&quot;a&quot;{0x0000000492925558})}
+  0.77%     │ │  0x00007f67fb708d2c: movabs $0x4922269a8,%r11  ;   {oop(a &apos;java/lang/reflect/Method&apos;{0x00000004922269a8})}
+  0.31%     │ │  0x00007f67fb708d36: movzbl 0xc(%r11),%r11d
+  0.94%     │ │  0x00007f67fb708d3b: test   %r11d,%r11d
+          ╭ │ │  0x00007f67fb708d3e: jne    0x00007f67fb708d9e  ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+          │ │ │                                                ; - java.lang.reflect.Method::invoke@4 (line 556)
+          │ │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+          │ │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.74%   │ │ │  0x00007f67fb708d40: movabs $0x4922269a8,%r11  ;   {oop(a &apos;java/lang/reflect/Method&apos;{0x00000004922269a8})}
+  0.23%   │ │ │  0x00007f67fb708d4a: mov    0x28(%r11),%r11d   ;*getfield clazz {reexecute=0 rethrow=0 return_oop=0}
+          │ │ │                                                ; - java.lang.reflect.Method::invoke@14 (line 558)
+          │ │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+          │ │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.75%   │ │ │  0x00007f67fb708d4e: movabs $0x4922269a8,%r9   ;   {oop(a &apos;java/lang/reflect/Method&apos;{0x00000004922269a8})}
+  0.48%   │ │ │  0x00007f67fb708d58: mov    0x24(%r9),%r9d     ;*getfield modifiers {reexecute=0 rethrow=0 return_oop=0}
+          │ │ │                                                ; - java.lang.reflect.Method::invoke@18 (line 559)
+          │ │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+          │ │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.72%   │ │ │  0x00007f67fb708d5c: mov    %r9d,%ecx
+  0.20%   │ │ │  0x00007f67fb708d5f: and    $0x8,%ecx          ;*iand {reexecute=0 rethrow=0 return_oop=0}
+          │ │ │                                                ; - java.lang.reflect.Modifier::isStatic@3 (line 105)
+          │ │ │                                                ; - java.lang.reflect.Method::invoke@21 (line 559)
+          │ │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+          │ │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.45%   │ │ │  0x00007f67fb708d62: test   %ecx,%ecx
+          │ │ │  0x00007f67fb708d64: jne    0x00007f67fb709028  ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+          │ │ │                                                ; - java.lang.reflect.Method::invoke@24 (line 559)
+          │ │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+          │ │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  1.01%   │ │ │  0x00007f67fb708d6a: cmp    $0x925659dc,%r11d  ;   {oop(a &apos;java/lang/Class&apos;{0x0000000492b2cee0} = &apos;me/sunlan/fastreflection/FastMethodPerfTest&apos;)}
+  0.00%   │ │ │  0x00007f67fb708d71: je     0x00007f67fb709050  ;*if_acmpne {reexecute=0 rethrow=0 return_oop=0}
+          │ │ │                                                ; - java.lang.reflect.AccessibleObject::verifyAccess@2 (line 603)
+          │ │ │                                                ; - java.lang.reflect.AccessibleObject::checkAccess@6 (line 590)
+          │ │ │                                                ; - java.lang.reflect.Method::invoke@39 (line 558)
+          │ │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+          │ │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.48%   │ │ │  0x00007f67fb708d77: movabs $0x4922269a8,%rcx  ;   {oop(a &apos;java/lang/reflect/Method&apos;{0x00000004922269a8})}
+  0.19%   │ │ │  0x00007f67fb708d81: mov    0x10(%rcx),%edi    ;*getfield securityCheckCache {reexecute=0 rethrow=0 return_oop=0}
+          │ │ │                                                ; - java.lang.reflect.AccessibleObject::verifyAccess@8 (line 606)
+          │ │ │                                                ; - java.lang.reflect.AccessibleObject::checkAccess@6 (line 590)
+          │ │ │                                                ; - java.lang.reflect.Method::invoke@39 (line 558)
+          │ │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+          │ │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.80%   │ │ │  0x00007f67fb708d84: mov    %r9d,%edx
+  0.77%   │ │ │  0x00007f67fb708d87: and    $0x4,%edx          ;*iand {reexecute=0 rethrow=0 return_oop=0}
+          │ │ │                                                ; - java.lang.reflect.Modifier::isProtected@2 (line 93)
+          │ │ │                                                ; - java.lang.reflect.AccessibleObject::verifyAccess@19 (line 608)
+          │ │ │                                                ; - java.lang.reflect.AccessibleObject::checkAccess@6 (line 590)
+          │ │ │                                                ; - java.lang.reflect.Method::invoke@39 (line 558)
+          │ │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+          │ │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.47%   │ │ │  0x00007f67fb708d8a: test   %edx,%edx
+          │ │ │  0x00007f67fb708d8c: jne    0x00007f67fb70908c  ;*ifeq {reexecute=0 rethrow=0 return_oop=0}
+          │ │ │                                                ; - java.lang.reflect.Modifier::isProtected@3 (line 93)
+          │ │ │                                                ; - java.lang.reflect.AccessibleObject::verifyAccess@19 (line 608)
+          │ │ │                                                ; - java.lang.reflect.AccessibleObject::checkAccess@6 (line 590)
+          │ │ │                                                ; - java.lang.reflect.Method::invoke@39 (line 558)
+          │ │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+          │ │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.33%   │ │ │  0x00007f67fb708d92: cmp    $0x925659dc,%edi   ;   {oop(a &apos;java/lang/Class&apos;{0x0000000492b2cee0} = &apos;me/sunlan/fastreflection/FastMethodPerfTest&apos;)}
+  0.00%   │ │ │  0x00007f67fb708d98: jne    0x00007f67fb708fbc  ;*ifne {reexecute=0 rethrow=0 return_oop=0}
+          │ │ │                                                ; - java.lang.reflect.Method::invoke@4 (line 556)
+          │ │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+          │ │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.76%   ↘ │ │  0x00007f67fb708d9e: movabs $0x4922269a8,%r11  ;   {oop(a &apos;java/lang/reflect/Method&apos;{0x00000004922269a8})}
+  0.73%     │ │  0x00007f67fb708da8: mov    0x50(%r11),%r11d   ;*getfield methodAccessor {reexecute=0 rethrow=0 return_oop=0}
+            │ │                                                ; - java.lang.reflect.Method::invoke@43 (line 562)
+            │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+            │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  1.45%     │ │  0x00007f67fb708dac: mov    0x8(%r12,%r11,8),%r9d  ; implicit exception: dispatches to 0x00007f67fb7092e4
+  4.46%     │ │  0x00007f67fb708db1: cmp    $0x9d310,%r9d      ;   {metadata(&apos;jdk/internal/reflect/DelegatingMethodAccessorImpl&apos;)}
+            │ │  0x00007f67fb708db8: jne    0x00007f67fb708f5c
+  1.38%     │ │  0x00007f67fb708dbe: shl    $0x3,%r11          ;*invokeinterface invoke {reexecute=0 rethrow=0 return_oop=0}
+            │ │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+            │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+            │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.36%     │ │  0x00007f67fb708dc2: mov    0xc(%r11),%r9d     ;*getfield delegate {reexecute=0 rethrow=0 return_oop=0}
+            │ │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@1 (line 43)
+            │ │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+            │ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+            │ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.61%     │ │  0x00007f67fb708dc6: mov    0x8(%r12,%r9,8),%r11d  ; implicit exception: dispatches to 0x00007f67fb709284
+  7.10%     │ │  0x00007f67fb708dcb: cmp    $0xd2040,%r11d     ;   {metadata(&apos;jdk/internal/reflect/GeneratedMethodAccessor1&apos;)}
+  0.00%    ╭│ │  0x00007f67fb708dd2: jne    0x00007f67fb708e7d  ;*invokevirtual invoke {reexecute=0 rethrow=0 return_oop=0}
+           ││ │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           ││ │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           ││ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           ││ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  1.64%    ││ │  0x00007f67fb708dd8: mov    0x10(%r8),%r8d     ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+           ││ │                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@36
+           ││ │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           ││ │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           ││ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           ││ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.16%    ││ │  0x00007f67fb708ddc: mov    0x8(%r12,%r8,8),%r11d  ; implicit exception: dispatches to 0x00007f67fb709294
+  0.33%    ││ │  0x00007f67fb708de1: cmp    $0x1808,%r11d      ;   {metadata(&apos;java/lang/String&apos;)}
+           ││ │  0x00007f67fb708de8: jne    0x00007f67fb709258
+  0.28%    ││ │  0x00007f67fb708dee: shl    $0x3,%r8           ;*checkcast {reexecute=0 rethrow=0 return_oop=0}
+           ││ │                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@37
+           ││ │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           ││ │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           ││ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           ││ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  1.15%    ││ │  0x00007f67fb708df2: mov    0xc(%r8),%r11d     ;*getfield value {reexecute=0 rethrow=0 return_oop=0}
+           ││ │                                                ; - java.lang.String::length@1 (line 658)
+           ││ │                                                ; - java.lang.String::startsWith@10 (line 1428)
+           ││ │                                                ; - java.lang.String::startsWith@3 (line 1470)
+           ││ │                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+           ││ │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           ││ │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           ││ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           ││ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.49%    ││ │  0x00007f67fb708df6: mov    0xc(%r12,%r11,8),%r9d  ;*arraylength {reexecute=0 rethrow=0 return_oop=0}
+           ││ │                                                ; - java.lang.String::length@4 (line 658)
+           ││ │                                                ; - java.lang.String::startsWith@10 (line 1428)
+           ││ │                                                ; - java.lang.String::startsWith@3 (line 1470)
+           ││ │                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+           ││ │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           ││ │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           ││ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           ││ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+           ││ │                                                ; implicit exception: dispatches to 0x00007f67fb7092bc
+  2.70%    ││ │  0x00007f67fb708dfb: movsbl 0x14(%r8),%ecx     ;*getfield coder {reexecute=0 rethrow=0 return_oop=0}
+           ││ │                                                ; - java.lang.String::coder@7 (line 3258)
+           ││ │                                                ; - java.lang.String::length@6 (line 658)
+           ││ │                                                ; - java.lang.String::startsWith@10 (line 1428)
+           ││ │                                                ; - java.lang.String::startsWith@3 (line 1470)
+           ││ │                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+           ││ │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           ││ │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           ││ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           ││ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.05%    ││ │  0x00007f67fb708e00: mov    %r9d,%r8d
+  0.70%    ││ │  0x00007f67fb708e03: sar    %cl,%r8d
+  3.17%    ││ │  0x00007f67fb708e06: mov    $0x3,%edi
+  0.38%    ││ │  0x00007f67fb708e0b: sub    %r8d,%edi
+  0.11%    ││ │  0x00007f67fb708e0e: test   %edi,%edi
+           ││ │  0x00007f67fb708e10: jl     0x00007f67fb708f36  ;*if_icmple {reexecute=0 rethrow=0 return_oop=0}
+           ││ │                                                ; - java.lang.String::startsWith@14 (line 1428)
+           ││ │                                                ; - java.lang.String::startsWith@3 (line 1470)
+           ││ │                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+           ││ │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           ││ │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           ││ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           ││ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.30%    ││ │  0x00007f67fb708e16: test   %ecx,%ecx
+           ││ │  0x00007f67fb708e18: jne    0x00007f67fb708ff4  ;*if_icmpne {reexecute=0 rethrow=0 return_oop=0}
+           ││ │                                                ; - java.lang.String::startsWith@46 (line 1435)
+           ││ │                                                ; - java.lang.String::startsWith@3 (line 1470)
+           ││ │                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+           ││ │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           ││ │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           ││ │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           ││ │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.92%    ││ │  0x00007f67fb708e1e: test   %r9d,%r9d
+           │╰ │  0x00007f67fb708e21: jbe    0x00007f67fb708c7d  ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+           │  │                                                ; - java.lang.String::startsWith@69 (line 1437)
+           │  │                                                ; - java.lang.String::startsWith@3 (line 1470)
+           │  │                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+           │  │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           │  │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           │  │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           │  │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.56%    │  │  0x00007f67fb708e27: mov    %r9d,%ecx
+  0.16%    │  │  0x00007f67fb708e2a: dec    %ecx
+  0.27%    │  │  0x00007f67fb708e2c: cmp    $0x3,%ecx
+           │  │  0x00007f67fb708e2f: jae    0x00007f67fb708f8c
+  0.96%    │  │  0x00007f67fb708e35: cmp    %r9d,%ecx
+           │  │  0x00007f67fb708e38: jae    0x00007f67fb708f8c
+  0.66%    │  │  0x00007f67fb708e3e: lea    (%r12,%r11,8),%r8
+  0.16%    │  │  0x00007f67fb708e42: xor    %r11d,%r11d
+  0.20%    │  │  0x00007f67fb708e45: data16 data16 nopw 0x0(%rax,%rax,1)
+           │  │                                                ;*aload_3 {reexecute=0 rethrow=0 return_oop=0}
+           │  │                                                ; - java.lang.String::startsWith@72 (line 1438)
+           │  │                                                ; - java.lang.String::startsWith@3 (line 1470)
+           │  │                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+           │  │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           │  │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           │  │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           │  │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.96%    │ ↗│  0x00007f67fb708e50: movslq %r11d,%rcx         ;*baload {reexecute=0 rethrow=0 return_oop=0}
+           │ ││                                                ; - java.lang.String::startsWith@86 (line 1438)
+           │ ││                                                ; - java.lang.String::startsWith@3 (line 1470)
+           │ ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+           │ ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.72%    │ ││  0x00007f67fb708e53: movabs $0x49231b100,%rdi  ;   {oop([B{0x000000049231b100})}
+  0.16%    │ ││  0x00007f67fb708e5d: movsbl 0x10(%rdi,%rcx,1),%edi  ;*baload {reexecute=0 rethrow=0 return_oop=0}
+           │ ││                                                ; - java.lang.String::startsWith@78 (line 1438)
+           │ ││                                                ; - java.lang.String::startsWith@3 (line 1470)
+           │ ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+           │ ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  1.31%    │ ││  0x00007f67fb708e62: movsbl 0x10(%r8,%rcx,1),%edx  ;*baload {reexecute=0 rethrow=0 return_oop=0}
+           │ ││                                                ; - java.lang.String::startsWith@86 (line 1438)
+           │ ││                                                ; - java.lang.String::startsWith@3 (line 1470)
+           │ ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+           │ ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.62%    │ ││  0x00007f67fb708e68: cmp    %edx,%edi
+           │ ││  0x00007f67fb708e6a: jne    0x00007f67fb708f36  ;*if_icmpeq {reexecute=0 rethrow=0 return_oop=0}
+           │ ││                                                ; - java.lang.String::startsWith@87 (line 1438)
+           │ ││                                                ; - java.lang.String::startsWith@3 (line 1470)
+           │ ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+           │ ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  1.01%    │ ││  0x00007f67fb708e70: inc    %r11d              ;*iinc {reexecute=0 rethrow=0 return_oop=0}
+           │ ││                                                ; - java.lang.String::startsWith@83 (line 1438)
+           │ ││                                                ; - java.lang.String::startsWith@3 (line 1470)
+           │ ││                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+           │ ││                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           │ ││                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           │ ││                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           │ ││                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.14%    │ ││  0x00007f67fb708e73: cmp    %r9d,%r11d
+           │ ╰│  0x00007f67fb708e76: jl     0x00007f67fb708e50  ;*if_icmpge {reexecute=0 rethrow=0 return_oop=0}
+           │  │                                                ; - java.lang.String::startsWith@69 (line 1437)
+           │  │                                                ; - java.lang.String::startsWith@3 (line 1470)
+           │  │                                                ; - jdk.internal.reflect.GeneratedMethodAccessor1::invoke@40
+           │  │                                                ; - jdk.internal.reflect.DelegatingMethodAccessorImpl::invoke@6 (line 43)
+           │  │                                                ; - java.lang.reflect.Method::invoke@59 (line 566)
+           │  │                                                ; - me.sunlan.fastreflection.FastMethodPerfTest::method_reflect_StringStartsWith_Return@14 (line 87)
+           │  │                                                ; - me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub@17 (line 186)
+  0.34%    │  ╰  0x00007f67fb708e78: jmp    0x00007f67fb708c7d
+           ↘     0x00007f67fb708e7d: mov    %rbx,(%rsp)
+                 0x00007f67fb708e81: mov    %r10,0x50(%rsp)
+                 0x00007f67fb708e86: lea    (%r12,%r9,8),%rsi  ;*getfield delegate {reexecute=0 rethrow=0 return_oop=0}
+....................................................................................................
+ 75.37%  <total for region 1>
+
+....[Hottest Region 2]..............................................................................
+c2, level 4, org.openjdk.jmh.infra.Blackhole::consumeFull, version 529 (75 bytes) 
+
+            # parm0:    rdx:rdx   = &apos;java/lang/Object&apos;
+            #           [sp+0x40]  (sp of caller)
+            0x00007f67fb701740: mov    0x8(%rsi),%r10d
+            0x00007f67fb701744: movabs $0x800000000,%r12
+            0x00007f67fb70174e: add    %r12,%r10
+            0x00007f67fb701751: xor    %r12,%r12
+            0x00007f67fb701754: cmp    %r10,%rax
+            0x00007f67fb701757: jne    0x00007f67f3c34e80  ;   {runtime_call ic_miss_stub}
+            0x00007f67fb70175d: data16 xchg %ax,%ax
+          [Verified Entry Point]
+  1.50%     0x00007f67fb701760: mov    %eax,-0x14000(%rsp)
+  4.55%     0x00007f67fb701767: push   %rbp
+  1.37%     0x00007f67fb701768: sub    $0x30,%rsp         ;*synchronization entry
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@-1 (line 513)
+  0.36%     0x00007f67fb70176c: mov    %rdx,(%rsp)
+  2.61%     0x00007f67fb701770: mov    %rsi,0x8(%rsp)
+  1.70%     0x00007f67fb701775: mov    0xc4(%rsi),%ebp    ;*getfield tlrMask {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@1 (line 513)
+  0.59%     0x00007f67fb70177b: imul   $0x19660d,0xc0(%rsi),%r11d
+  1.62%     0x00007f67fb701786: add    $0x3c6ef35f,%r11d  ;*iadd {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@15 (line 514)
+  1.12%     0x00007f67fb70178d: mov    %r11d,0xc0(%rsi)   ;*putfield tlr {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@17 (line 514)
+  2.46%     0x00007f67fb701794: and    %ebp,%r11d
+  0.04%     0x00007f67fb701797: test   %r11d,%r11d
+         ╭  0x00007f67fb70179a: je     0x00007f67fb7017ac  ;*return {reexecute=0 rethrow=0 return_oop=0}
+         │                                                ; - org.openjdk.jmh.infra.Blackhole::consumeFull@48 (line 520)
+  0.23%  │  0x00007f67fb70179c: add    $0x30,%rsp
+  0.22%  │  0x00007f67fb7017a0: pop    %rbp
+  1.27%  │  0x00007f67fb7017a1: mov    0x108(%r15),%r10
+  0.12%  │  0x00007f67fb7017a8: test   %eax,(%r10)        ;   {poll_return}
+  2.59%  │  0x00007f67fb7017ab: ret    
+         ↘  0x00007f67fb7017ac: mov    0x118(%r15),%rbx
+            0x00007f67fb7017b3: mov    %rbx,%r10
+            0x00007f67fb7017b6: add    $0x20,%r10
+            0x00007f67fb7017ba: cmp    0x128(%r15),%r10
+            0x00007f67fb7017c1: jae    0x00007f67fb701a1e  ;*putfield referent {reexecute=0 rethrow=0 return_oop=0}
+                                                          ; - java.lang.ref.Reference::&lt;init&gt;@6 (line 399)
+                                                          ; - java.lang.ref.Reference::&lt;init&gt;@3 (line 395)
+                                                          ; - java.lang.ref.WeakReference::&lt;init&gt;@2 (line 57)
+                                                          ; - org.openjdk.jmh.infra.Blackhole::consumeFull@33 (line 517)
+            0x00007f67fb7017c7: mov    %r10,0x118(%r15)
+....................................................................................................
+ 22.35%  <total for region 2>
+
+....[Hottest Regions]...............................................................................
+ 75.37%         c2, level 4  me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub, version 562 (507 bytes) 
+ 22.35%         c2, level 4  org.openjdk.jmh.infra.Blackhole::consumeFull, version 529 (75 bytes) 
+  0.43%           libjvm.so  SpinPause (9 bytes) 
+  0.09%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.08%   [kernel.kallsyms]  [unknown] (12 bytes) 
+  0.04%        libc-2.27.so  _dl_addr (2 bytes) 
+  0.04%           libjvm.so  ElfSymbolTable::lookup (54 bytes) 
+  0.03%   [kernel.kallsyms]  [unknown] (39 bytes) 
+  0.03%   [kernel.kallsyms]  [unknown] (0 bytes) 
+  0.03%   [kernel.kallsyms]  [unknown] (1 bytes) 
+  0.02%           libjvm.so  InstanceKlass::allocate_objArray (32 bytes) 
+  0.02%           libjvm.so  Klass::class_loader (15 bytes) 
+  0.02%           libjvm.so  SharedRuntime::on_slowpath_allocation_exit (6 bytes) 
+  0.02%   [kernel.kallsyms]  [unknown] (4 bytes) 
+  0.02%           libjvm.so  OptoRuntime::new_array_C (32 bytes) 
+  0.02%           libjvm.so  ParallelTaskTerminator::offer_termination (9 bytes) 
+  0.02%          ld-2.27.so  __tls_get_addr (32 bytes) 
+  0.02%           libjvm.so  G1CardTable::is_in_young (16 bytes) 
+  0.02%           libjvm.so  MemAllocator::allocate (0 bytes) 
+  0.01%           libjvm.so  G1FromCardCache::clear (11 bytes) 
+  1.34%  <...other 422 warm regions...>
+....................................................................................................
+100.00%  <totals>
+
+....[Hottest Methods (after inlining)]..............................................................
+ 75.37%         c2, level 4  me.sunlan.fastreflection.jmh_generated.FastMethodPerfTest_method_reflect_StringStartsWith_Return_jmhTest::method_reflect_StringStartsWith_Return_avgt_jmhStub, version 562 
+ 22.35%         c2, level 4  org.openjdk.jmh.infra.Blackhole::consumeFull, version 529 
+  0.89%   [kernel.kallsyms]  [unknown] 
+  0.43%           libjvm.so  SpinPause 
+  0.07%        libc-2.27.so  _dl_addr 
+  0.04%           libjvm.so  ElfSymbolTable::lookup 
+  0.03%           libjvm.so  InstanceKlass::allocate_objArray 
+  0.03%           libjvm.so  OptoRuntime::new_array_C 
+  0.03%           libjvm.so  MemAllocator::allocate 
+  0.02%           libjvm.so  Klass::class_loader 
+  0.02%           libjvm.so  G1FromCardCache::clear 
+  0.02%           libjvm.so  SharedRuntime::on_slowpath_allocation_exit 
+  0.02%           libjvm.so  ParallelTaskTerminator::offer_termination 
+  0.02%          ld-2.27.so  __tls_get_addr 
+  0.02%           libjvm.so  G1Allocator::unsafe_max_tlab_alloc 
+  0.02%           libjvm.so  G1Policy::predict_region_elapsed_time_ms 
+  0.02%           libjvm.so  G1CardTable::is_in_young 
+  0.01%           libjvm.so  oopFactory::new_objArray 
+  0.01%           libjvm.so  G1CollectedHeap::attempt_allocation_slow 
+  0.01%           libjvm.so  OtherRegionsTable::occupied 
+  0.58%  <...other 151 warm methods...>
+....................................................................................................
+100.00%  <totals>
+
+....[Distribution by Source]........................................................................
+ 97.72%         c2, level 4
+  1.18%           libjvm.so
+  0.89%   [kernel.kallsyms]
+  0.12%        libc-2.27.so
+  0.03%      hsdis-amd64.so
+  0.02%  libpthread-2.27.so
+  0.02%          ld-2.27.so
+  0.01%       perf-2008.map
+  0.00%        runtime stub
+  0.00%              [vdso]
+  0.00%         interpreter
+  0.00%        libverify.so
+....................................................................................................
+100.00%  <totals>
+
+
+
+# Run complete. Total time: 00:10:53
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                                                           Mode  Cnt   Score   Error  Units
+FastMethodPerfTest.method_direct_StringStartsWith                   avgt    5   0.786 ± 0.059  ns/op
+FastMethodPerfTest.method_direct_StringStartsWith:·asm              avgt          NaN            ---
+FastMethodPerfTest.method_direct_StringStartsWith_Return            avgt    5   4.665 ± 0.276  ns/op
+FastMethodPerfTest.method_direct_StringStartsWith_Return:·asm       avgt          NaN            ---
+FastMethodPerfTest.method_fastreflect_StringStartsWith              avgt    5   0.777 ± 0.044  ns/op
+FastMethodPerfTest.method_fastreflect_StringStartsWith:·asm         avgt          NaN            ---
+FastMethodPerfTest.method_fastreflect_StringStartsWith_Return       avgt    5   4.595 ± 0.342  ns/op
+FastMethodPerfTest.method_fastreflect_StringStartsWith_Return:·asm  avgt          NaN            ---
+FastMethodPerfTest.method_reflect_StringStartsWith                  avgt    5  13.563 ± 1.266  ns/op
+FastMethodPerfTest.method_reflect_StringStartsWith:·asm             avgt          NaN            ---
+FastMethodPerfTest.method_reflect_StringStartsWith_Return           avgt    5  17.713 ± 0.883  ns/op
+FastMethodPerfTest.method_reflect_StringStartsWith_Return:·asm      avgt          NaN            ---
+
+Benchmark result is saved to /home/lucifer/fast-reflection/build/reports/jmh/results.txt

@@ -1,0 +1,13 @@
+Benchmark                                                           Mode  Cnt   Score   Error  Units
+FastMethodPerfTest.method_direct_StringStartsWith                   avgt    5   0.786 ± 0.059  ns/op
+FastMethodPerfTest.method_direct_StringStartsWith:·asm              avgt          NaN            ---
+FastMethodPerfTest.method_direct_StringStartsWith_Return            avgt    5   4.665 ± 0.276  ns/op
+FastMethodPerfTest.method_direct_StringStartsWith_Return:·asm       avgt          NaN            ---
+FastMethodPerfTest.method_fastreflect_StringStartsWith              avgt    5   0.777 ± 0.044  ns/op
+FastMethodPerfTest.method_fastreflect_StringStartsWith:·asm         avgt          NaN            ---
+FastMethodPerfTest.method_fastreflect_StringStartsWith_Return       avgt    5   4.595 ± 0.342  ns/op
+FastMethodPerfTest.method_fastreflect_StringStartsWith_Return:·asm  avgt          NaN            ---
+FastMethodPerfTest.method_reflect_StringStartsWith                  avgt    5  13.563 ± 1.266  ns/op
+FastMethodPerfTest.method_reflect_StringStartsWith:·asm             avgt          NaN            ---
+FastMethodPerfTest.method_reflect_StringStartsWith_Return           avgt    5  17.713 ± 0.883  ns/op
+FastMethodPerfTest.method_reflect_StringStartsWith_Return:·asm      avgt          NaN            ---
