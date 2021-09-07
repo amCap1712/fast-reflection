@@ -53,6 +53,8 @@ tasks.named('test') {
 
 jmh {
     jvmArgs = ['-Xms2g', '-Xms2g', '-XX:MetaspaceSize=512m', '-XX:MaxMetaspaceSize=512m', '-XX:+UseG1GC']
+    profilers = ['perfasm']
+    humanOutputFile = project.file("${project.buildDir}/reports/jmh/human.txt")
     jmhVersion = '1.33'
     includeTests = true
     duplicateClassesStrategy = 'WARN'

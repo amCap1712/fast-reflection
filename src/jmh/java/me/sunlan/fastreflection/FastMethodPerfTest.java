@@ -41,6 +41,7 @@ import java.util.concurrent.TimeUnit;
  *
  */
 
+@Fork(1)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Thread)
