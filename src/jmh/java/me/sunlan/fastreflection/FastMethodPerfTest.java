@@ -28,6 +28,9 @@ import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Warmup;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
@@ -46,22 +49,22 @@ import java.util.concurrent.TimeUnit;
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Thread)
 public class FastMethodPerfTest {
-    @Benchmark
-    public void method_direct_StringStartsWith() {
-        "abc".startsWith("a");
-    }
-
-    @Benchmark
-    public void method_reflect_StringStartsWith() throws Throwable {
-        STARTSWITH_METHOD.invoke("abc", "a");
-    }
-
-    @Benchmark
-    public void method_fastreflect_StringStartsWith() throws Throwable {
-        FAST_STARTSWITH_METHOD.invoke("abc", "a");
-    }
-
-
+//    @Benchmark
+//    public void method_direct_StringStartsWith() {
+//        "abc".startsWith("a");
+//    }
+//
+//    @Benchmark
+//    public void method_reflect_StringStartsWith() throws Throwable {
+//        STARTSWITH_METHOD.invoke("abc", "a");
+//    }
+//
+//    @Benchmark
+//    public void method_fastreflect_StringStartsWith() throws Throwable {
+//        FAST_STARTSWITH_METHOD.invoke("abc", "a");
+//    }
+//
+//
 //    @Benchmark
 //    public void constructor_direct_StringCtorCharArray() {
 //        new String(CHAR_ARRAY);
@@ -92,8 +95,14 @@ public class FastMethodPerfTest {
         return FAST_STARTSWITH_METHOD.invoke("abc", "a");
     }
 
+    @Benchmark
+    public Object method_handle_StringStartsWith_Return() throws Throwable {
+        return STARTSWITH_METHOD_HANDLE.invoke("abc", "a");
+    }
+
     private static final Method STARTSWITH_METHOD;
     private static final FastMethod FAST_STARTSWITH_METHOD;
+    private static final MethodHandle STARTSWITH_METHOD_HANDLE;
 
     private static final Constructor<String> STRING_CONSTRUCTOR_CHAR_ARRAY;
     private static final FastConstructor<String> FAST_STRING_CONSTRUCTOR_CHAR_ARRAY;
@@ -104,6 +113,8 @@ public class FastMethodPerfTest {
         try {
             STARTSWITH_METHOD = String.class.getMethod("startsWith", String.class);
             FAST_STARTSWITH_METHOD = FastMethod.create(STARTSWITH_METHOD);
+            STARTSWITH_METHOD_HANDLE = MethodHandles.lookup()
+                    .findVirtual(String.class, "startsWith", MethodType.methodType(boolean.class, String.class));
 
             STRING_CONSTRUCTOR_CHAR_ARRAY = String.class.getConstructor(char[].class);
             FAST_STRING_CONSTRUCTOR_CHAR_ARRAY = FastConstructor.create(STRING_CONSTRUCTOR_CHAR_ARRAY);
